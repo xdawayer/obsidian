@@ -1,1 +1,7 @@
-{}
+{
+  "theme": "moonstone",
+  "interfaceFontFamily": "TsangerJinKai02",
+  "textFontFamily": "TsangerJinKai02",
+  "monospaceFontFamily": "JetBrains Mono",
+  "cssTheme": "Baseline"
+}
