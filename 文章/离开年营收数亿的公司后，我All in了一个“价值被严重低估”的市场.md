@@ -1,4 +1,20 @@
+---
+title: 离开年营收数亿的公司后，我All in了一个“价值被严重低估”的市场
+date: 2026-01-20
+author: Lynne
+tags:
+  - startup
+  - indie_hacker
+  - ai
+  - growth
+  - deep_thinking
+  - build_in_public
+category: 文章/观点
+status: published
+description: 作者深度复盘离开高管职位，All in AI增长领域的决策逻辑。探讨了稀缺性转移、超级个体的崛起以及为何“让产品被发现”是新的价值洼地。
+---
 
+![](assets/离开年营收数亿的公司后，我All%20in了一个“价值被严重低估”的市场/img_v3_02u4_a0c7a2c9-30a5-4aa9-8e33-773cfaff731g.jpg)
 
 **写在前面的话：**
 
@@ -172,6 +188,8 @@ AI确实让环节1（构建）变得容易了。GitHub上1亿+用户，能“写
 - 我在持续迭代（他们的反馈真的被采纳）
 
 这就是为什么透明度本身就是最好的营销。
+
+![](assets/离开年营收数亿的公司后，我All%20in了一个“价值被严重低估”的市场/img_v3_02u4_dd37f710-8e00-46ec-bd9f-44a06818d9dg.jpg)
 
 ## 写在最后
 
