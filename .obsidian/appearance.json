@@ -1,7 +1,7 @@
 {
   "theme": "moonstone",
   "interfaceFontFamily": "TsangerJinKai02,iA Write Quattro S",
-  "textFontFamily": "iA Write Quattro S",
-  "monospaceFontFamily": "FZPingXianYaSongS-R-GB",
-  "cssTheme": "Minimal"
+  "textFontFamily": "iA Write Quattro S,TsangerJinKai02",
+  "monospaceFontFamily": "FZPingXianYaSongS-R-GB,JetBrains Mono",
+  "cssTheme": "Baseline"
 }
