@@ -9,8 +9,17 @@
 
 ## 已包含技能
 
+### 核心 SEO
+
 1. seo-audit
 2. programmatic-seo
 3. schema-markup
 4. competitor-alternatives
 5. free-tool-strategy（与 SEO 相关，偏向工具与可链接资产）
+
+### SEO 相关（非主技能）
+
+6. marketing-ideas
+7. marketing-psychology
+8. popup-cro
+9. copywriting
