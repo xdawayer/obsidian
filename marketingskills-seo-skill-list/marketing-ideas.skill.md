@@ -1,57 +1,86 @@
+---
+title: 营销点子（含 SEO 方向）
+tags:
+  - seo
+  - ideas
+  - growth
+  - skill
+  - marketingskills
+source: /Users/wzb/obsidian/marketingskills/skills/marketing-ideas/SKILL.md
+updated: 2026-01-21
+---
+
 # marketing-ideas
 
-Source: /Users/wzb/obsidian/marketingskills/skills/marketing-ideas/SKILL.md
+来源: /Users/wzb/obsidian/marketingskills/skills/marketing-ideas/SKILL.md
 
-## Skill trigger (prompt intent)
-- Use when the user asks for marketing ideas, growth ideas, or ways to market a SaaS/software product.
+## 技能触发（prompt 意图）
 
-## Scope in one line
-Provide a curated set of marketing ideas with implementation guidance, including a strong SEO-focused subset.
+- 用户需要营销创意、增长点子或 SaaS 推广策略。
 
-## Prompt structure deep dive
-1. How to Use This Skill
-   - Ask for product, audience, and stage.
-   - Suggest 3-5 ideas tailored to context.
-   - Provide implementation details and consider resources.
-2. Idea Library
-   - 140 ideas organized by category.
-   - SEO-heavy cluster in Content & SEO, Competitor & Comparison, Free Tools & Engineering.
-3. Implementation Tips
-   - Guidance by stage, budget, and timeline.
-4. Output Format
-   - For each idea: name, why it fits, how to start, expected outcome, resources.
-5. Related Skills
-   - programmatic-seo, competitor-alternatives, free-tool-strategy, page-cro.
+## 一句话范围
 
-## Best-fit use cases
-- “Give me SEO growth ideas for a SaaS.”
-- “We need an organic traffic backlog.”
-- “What SEO initiatives can a small team start with?”
+提供可执行的营销点子集合，其中包含系统化的 SEO 相关思路。
 
-## How to use (step-by-step)
-1. Gather context
-   - Product, audience, stage, budget, and team size.
-2. Filter to SEO-relevant categories
-   - Content & SEO, competitor comparisons, free tools, and data-driven content.
-3. Select 3-5 ideas
-   - Balance quick wins (content refresh, internal linking) and long-term plays (programmatic SEO, glossary).
-4. Provide implementation starters
-   - 2-3 concrete steps for each idea.
-5. Align to resources
-   - Note time, budget, and skill requirements.
-6. Connect to deeper skills
-   - Use programmatic-seo or free-tool-strategy when a chosen idea needs a full plan.
+## 流程概览
 
-## Output expectations
-- 3-5 ideas with rationale, first steps, expected outcomes, and resources.
-- Clear prioritization based on stage and capacity.
+```mermaid
+flowchart TD
+  A[收集产品与阶段信息] --> B[筛选 SEO 相关类别]
+  B --> C[选出 3-5 个点子]
+  C --> D[给出起步步骤]
+  D --> E[匹配资源与优先级]
+```
 
-## Pitfalls to avoid
-- Dumping a long list without prioritization.
-- Ignoring stage and budget constraints.
-- Treating SEO as content volume only.
+## Prompt 结构深度解读
 
-## When to pair with other skills
-- programmatic-seo: scale SEO pages from idea #40.
-- competitor-alternatives: execute comparison page ideas.
-- free-tool-strategy: build linkable tools.
+1. 使用方式
+   - 先问产品、受众、阶段。
+   - 按上下文给出 3-5 个最相关想法。
+   - 给出实施细节并考虑资源。
+2. 点子库
+   - 140 个点子按类别组织。
+   - SEO 集中在 Content & SEO、Competitor & Comparison、Free Tools & Engineering。
+3. 实施建议
+   - 按阶段、预算、时间线给出建议。
+4. 输出格式
+   - 每个点子: 名称、适配原因、启动步骤、预期结果、资源需求。
+5. 相关技能
+   - programmatic-seo、competitor-alternatives、free-tool-strategy、page-cro。
+
+> [!tip] 适用场景
+> - “给我一些 SEO 增长点子。”
+> - “我们需要有机流量的待办清单。”
+> - “小团队能做的 SEO 项目有哪些？”
+
+## 使用方式（分步）
+
+1. 获取背景
+   - 产品、受众、阶段、预算、团队规模。
+2. 筛选 SEO 相关类别
+   - Content & SEO、竞品对比、免费工具、数据内容。
+3. 选择 3-5 个方案
+   - 组合快速见效与长期沉淀。
+4. 给出启动步骤
+   - 每个点子提供 2-3 个可执行动作。
+5. 匹配资源
+   - 标注时间、预算、技能要求。
+6. 关联深度技能
+   - 需要体系化方案时衔接 programmatic-seo 或 free-tool-strategy。
+
+## 输出期望
+
+- 3-5 个点子，包含原因、起步步骤、预期结果和资源。
+- 按阶段与能力明确优先级。
+
+## 常见误区
+
+- 输出过长清单缺少优先级。
+- 忽略阶段和预算限制。
+- 把 SEO 简化为堆内容数量。
+
+## 适合搭配的技能
+
+- programmatic-seo: 执行规模化 SEO 页面。
+- competitor-alternatives: 落地竞品对比策略。
+- free-tool-strategy: 构建可链接工具。

@@ -1,51 +1,80 @@
+---
+title: 营销心理学（SEO 视角）
+tags:
+  - seo
+  - psychology
+  - strategy
+  - skill
+  - marketingskills
+source: /Users/wzb/obsidian/marketingskills/skills/marketing-psychology/SKILL.md
+updated: 2026-01-21
+---
+
 # marketing-psychology
 
-Source: /Users/wzb/obsidian/marketingskills/skills/marketing-psychology/SKILL.md
+来源: /Users/wzb/obsidian/marketingskills/skills/marketing-psychology/SKILL.md
 
-## Skill trigger (prompt intent)
-- Use when the user asks about psychology, mental models, behavioral science, or why people buy.
+## 技能触发（prompt 意图）
 
-## Scope in one line
-Apply mental models to marketing decisions, including SEO strategy and long-term compounding.
+- 用户希望用心理学、心智模型或行为科学解释营销与决策。
 
-## Prompt structure deep dive
-1. How to Use This Skill
-   - Identify relevant models, explain the psychology, apply to marketing, implement ethically.
-2. Mental Model Library
-   - Foundational thinking, buyer psychology, persuasion, pricing, design, growth and scaling.
-3. Quick Reference
-   - Model-to-problem mapping for common marketing challenges.
-4. Questions to Ask
-   - Clarify desired behavior, journey stage, and current blockers.
-5. Related Skills
-   - page-cro, copywriting, popup-cro, ab-test-setup.
+## 一句话范围
 
-## Best-fit use cases
-- “SEO growth stalled. What should we focus on?”
-- “How should we think about long-term content compounding?”
-- “Which mental models apply to organic acquisition?”
+用心智模型指导营销决策，并映射到 SEO 的长期增长与复利。
 
-## How to use (step-by-step)
-1. Define the SEO decision
-   - Traffic plateau, content scaling, or conversion drop from organic.
-2. Select relevant models
-   - Theory of Constraints, Pareto (80/20), Feedback Loops, Compounding.
-3. Translate models into actions
-   - Identify bottlenecks, focus on the highest-leverage pages, build loops.
-4. Apply ethically
-   - Avoid manipulative tactics and keep recommendations user-first.
-5. Measure and iterate
-   - Track outcomes and test assumptions with experiments.
+## 流程概览
 
-## Output expectations
-- 3-5 models mapped to the SEO problem with concrete applications.
-- Ethical guardrails and measurable next steps.
+```mermaid
+flowchart TD
+  A[定义 SEO 问题] --> B[选择相关模型]
+  B --> C[转换为行动建议]
+  C --> D[设定衡量指标]
+  D --> E[迭代验证]
+```
 
-## Pitfalls to avoid
-- Using models as slogans instead of diagnosis tools.
-- Optimizing local metrics while the real bottleneck remains.
+## Prompt 结构深度解读
 
-## When to pair with other skills
-- seo-audit: identify concrete technical constraints.
-- programmatic-seo: scale once the loop is proven.
-- analytics-tracking: measure compounding effects.
+1. 使用方式
+   - 选模型、解释心理机制、落地营销应用、确保合规与伦理。
+2. 模型库
+   - 基础思考、购买心理、说服、定价、设计、增长扩张。
+3. 快速参考
+   - 典型问题与对应模型。
+4. 追问清单
+   - 明确目标行为、旅程阶段与阻碍。
+5. 相关技能
+   - page-cro、copywriting、popup-cro、ab-test-setup。
+
+> [!tip] 适用场景
+> - “SEO 增长停滞，该从哪里下手？”
+> - “如何理解内容增长的复利效应？”
+> - “哪些心智模型适合有机增长？”
+
+## 使用方式（分步）
+
+1. 定义 SEO 问题
+   - 例如流量平台期、内容扩张、转化下降。
+2. 选择合适模型
+   - 约束理论、80/20、反馈循环、复利。
+3. 转化为行动
+   - 找瓶颈、聚焦高杠杆页面、构建闭环。
+4. 伦理执行
+   - 避免操控性做法，优先用户价值。
+5. 衡量与迭代
+   - 以指标验证假设，必要时做实验。
+
+## 输出期望
+
+- 3-5 个模型与 SEO 问题的一一映射。
+- 清晰的行动建议与可衡量的下一步。
+
+## 常见误区
+
+- 把模型当口号，不做诊断。
+- 只优化局部指标，忽视真实瓶颈。
+
+## 适合搭配的技能
+
+- seo-audit: 定位具体技术瓶颈。
+- programmatic-seo: 循环验证后再规模化。
+- analytics-tracking: 衡量复利效应。

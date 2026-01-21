@@ -1,62 +1,92 @@
+---
+title: 弹窗转化优化（SEO 友好）
+tags:
+  - seo
+  - cro
+  - popup
+  - skill
+  - marketingskills
+source: /Users/wzb/obsidian/marketingskills/skills/popup-cro/SKILL.md
+updated: 2026-01-21
+---
+
 # popup-cro
 
-Source: /Users/wzb/obsidian/marketingskills/skills/popup-cro/SKILL.md
+来源: /Users/wzb/obsidian/marketingskills/skills/popup-cro/SKILL.md
 
-## Skill trigger (prompt intent)
-- Use when the user wants to create or optimize popups, modals, overlays, slide-ins, or banners.
+## 技能触发（prompt 意图）
 
-## Scope in one line
-Design popups that convert without harming user experience or SEO (especially on mobile).
+- 用户需要设计或优化弹窗、模态、浮层、侧滑或公告条。
 
-## Prompt structure deep dive
-1. Initial Assessment
-   - Purpose, current performance, traffic context.
-2. Core Principles
-   - Timing, clear value, user respect.
-3. Trigger Strategies
-   - Time-based, scroll, exit intent, click, session-based, behavior-based.
-4. Popup Types
-   - Email capture, lead magnet, discount, exit intent, announcement, slide-in.
-5. Design Best Practices
-   - Hierarchy, sizing, close button, mobile behavior.
-6. Copy Formulas
-   - Headline, subhead, CTA, decline text.
-7. Frequency and Rules
-   - Capping, targeting, page rules.
-8. Compliance and Accessibility
-   - GDPR, accessibility, Google guidelines (intrusive interstitials hurt SEO).
-9. Measurement and Output Format
-   - Metrics, tracking, and structured recommendations.
+## 一句话范围
 
-## Best-fit use cases
-- “Improve email capture without hurting SEO.”
-- “Fix mobile popups that may trigger SEO penalties.”
-- “Design an SEO-safe announcement banner.”
+设计既能转化又不伤害体验与 SEO 的弹窗策略（尤其是移动端）。
 
-## How to use (step-by-step)
-1. Clarify traffic context
-   - Separate organic vs paid and note mobile share.
-2. Choose SEO-safe formats
-   - Prefer banners or slide-ins on mobile.
-3. Set engagement-based triggers
-   - Use scroll or click triggers instead of immediate time-based popups.
-4. Apply frequency caps
-   - Avoid repeated interruption for organic visitors.
-5. Validate against Google guidelines
-   - Avoid full-screen interstitials before content on mobile.
-6. Measure impact
-   - Track popup conversion and watch bounce or engagement changes.
+## 流程概览
 
-## Output expectations
-- Popup type, trigger, targeting, frequency, copy, and design notes.
-- Conflict rules if multiple popups are recommended.
+```mermaid
+flowchart TD
+  A[明确目标与流量来源] --> B[选择 SEO 安全形态]
+  B --> C[设置触发与频控]
+  C --> D[文案与版式设计]
+  D --> E[合规与可访问性检查]
+  E --> F[监测与迭代]
+```
 
-## Pitfalls to avoid
-- Full-screen mobile interstitials that harm SEO.
-- Aggressive timing before engagement.
-- Ignoring dismissal preferences and frequency caps.
+## Prompt 结构深度解读
 
-## When to pair with other skills
-- form-cro: optimize the form inside the popup.
-- page-cro: align popup with page strategy.
-- ab-test-setup: validate trigger and copy changes.
+1. 初始评估
+   - 目的、现状、流量来源。
+2. 核心原则
+   - 时机、价值清晰、尊重用户。
+3. 触发策略
+   - 时间、滚动、离开意图、点击、会话/行为触发。
+4. 弹窗类型
+   - 订阅、内容交换、优惠、离站、公告、侧滑。
+5. 设计最佳实践
+   - 层级、尺寸、关闭按钮、移动端行为。
+6. 文案公式
+   - 标题、副标题、CTA、拒绝文案。
+7. 频控与规则
+   - 频率上限、受众和页面规则。
+8. 合规与可访问性
+   - GDPR、无障碍、Google 指南（侵入式弹窗影响 SEO）。
+9. 监测与输出
+   - 核心指标、结构化方案输出。
+
+> [!tip] 适用场景
+> - “提升订阅率但不要影响 SEO。”
+> - “修复可能触发 SEO 惩罚的移动端弹窗。”
+> - “设计 SEO 安全的公告条。”
+
+## 使用方式（分步）
+
+1. 明确流量背景
+   - 区分自然流量与付费流量，关注移动端比例。
+2. 选择 SEO 友好形态
+   - 移动端优先使用横幅或侧滑。
+3. 采用参与度触发
+   - 滚动或点击触发优先，避免刚进入即弹。
+4. 设置频控
+   - 降低重复打扰，尊重关闭选择。
+5. 校验 Google 指南
+   - 避免移动端全屏遮挡首屏内容。
+6. 监测影响
+   - 追踪转化率与跳出率变化。
+
+## 输出期望
+
+- 弹窗类型、触发、定向、频率、文案与设计说明。
+- 多弹窗方案的冲突规则。
+
+## 常见误区
+
+- 移动端全屏弹窗导致 SEO 风险。
+- 过早触发影响体验。
+- 忽略频控与关闭偏好。
+
+## 适合搭配的技能
+
+- form-cro: 优化弹窗表单。
+- page-cro: 与页面策略对齐。
+- ab-test-setup: 验证触发与文案。

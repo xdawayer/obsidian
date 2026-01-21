@@ -1,70 +1,99 @@
+---
+title: 程序化 SEO
+tags:
+  - seo
+  - programmatic-seo
+  - skill
+  - marketingskills
+source: /Users/wzb/obsidian/marketingskills/skills/programmatic-seo/SKILL.md
+updated: 2026-01-21
+---
+
 # programmatic-seo
 
-Source: /Users/wzb/obsidian/marketingskills/skills/programmatic-seo/SKILL.md
+来源: /Users/wzb/obsidian/marketingskills/skills/programmatic-seo/SKILL.md
 
-## Skill trigger (prompt intent)
-- Use when user wants SEO pages at scale: programmatic SEO, template pages, directories, location pages, integrations, comparisons, keyword + city pages.
+## 技能触发（prompt 意图）
 
-## Scope in one line
-Design scalable SEO page systems that rank without thin content penalties.
+- 用户要做规模化 SEO 页面: programmatic SEO、模板页、目录页、地点页、集成页、对比页、[关键词]+[城市] 页面等。
 
-## Prompt structure deep dive
-1. Initial Assessment
-   - Business context, opportunity size, competition.
-2. Core Principles
-   - Unique value per page, proprietary data, subfolders, intent match, quality at scale.
-3. 12 Playbooks
-   - Templates, curation, conversions, comparisons, examples, locations, personas, integrations, glossary, translations, directory, profiles.
-4. Choosing Playbook
-   - Match to assets; combine playbooks to increase differentiation.
-5. Implementation Framework
-   - Keyword pattern research → data schema → template design → internal linking → indexation strategy.
-6. Quality Checks
-   - Pre-launch checklist and post-launch monitoring.
-7. Common Mistakes
-   - Thin content, cannibalization, over-generation, bad data, poor UX.
-8. Output Format
-   - Strategy doc, template structure, launch checklist.
-9. Questions & Related Skills
-   - seo-audit, schema-markup, analytics-tracking, copywriting.
+## 一句话范围
 
-## Best-fit use cases
-- “We want to build 1,000 location pages.”
-- “Create an integrations directory for SEO.”
-- “Scale comparison pages for competitors.”
+设计可规模化且不触发薄内容惩罚的 SEO 页面体系。
 
-## How to use (step-by-step)
-1. Identify keyword patterns
-   - Define variables, estimate total pages, validate volume and intent.
-2. Audit competition and feasibility
-   - Evaluate ranking difficulty and content quality needed to win.
-3. Define data requirements
-   - Choose data sources (first-party preferred), design schema per page type.
-4. Choose playbook(s)
-   - Pick from the 12 playbooks and combine where it adds uniqueness.
-5. Design template structure
-   - Ensure unique intro, data-driven sections, CTAs, internal links.
-6. Build internal linking architecture
-   - Hub pages, breadcrumbs, cross-links, sitemaps.
-7. Plan indexation strategy
-   - Prioritize high-value pages; noindex thin variants.
-8. Run pre-launch quality checks
-   - Unique titles, schema, CWV, canonicals, crawlability.
-9. Launch and monitor
-   - Track indexation, ranking by pattern, engagement, conversions.
+## 流程概览
 
-## Output expectations
-- Opportunity analysis (pattern, volume, competition).
-- Implementation plan (data, template, linking, technical stack).
-- Content guidelines and uniqueness rules.
-- Concrete page template (URL, title, meta, H1, outline, schema).
+```mermaid
+flowchart TD
+  A[关键词模式识别] --> B[机会与竞争评估]
+  B --> C[数据需求与结构]
+  C --> D[模板与内容策略]
+  D --> E[内链与索引策略]
+  E --> F[质量检查与上线监控]
+```
 
-## Pitfalls to avoid
-- Variable swapping without unique value.
-- Creating thousands of pages with no demand.
-- Subdomains that split domain authority.
+## Prompt 结构深度解读
 
-## When to pair with other skills
-- seo-audit: validate large template pages post-launch.
-- schema-markup: add structured data at scale.
-- copywriting: non-templated copy and positioning.
+1. 初始评估
+   - 业务背景、机会规模、竞争情况。
+2. 核心原则
+   - 每页独特价值、数据护城河、子目录结构、意图匹配、规模化质量。
+3. 12 个 pSEO playbook
+   - 模板、策展、转换、对比、案例、地点、人群、集成、术语、翻译、目录、人物/公司。
+4. 选择 playbook
+   - 根据资产匹配，必要时组合打法。
+5. 实施框架
+   - 关键词模式 → 数据需求 → 模板设计 → 内链结构 → 索引策略。
+6. 质量检查
+   - 上线前清单 + 上线后监控。
+7. 常见错误
+   - 薄内容、关键词自相竞争、过量生成、数据质量差、用户体验差。
+8. 输出格式
+   - 策略文档、模板结构、上线清单。
+9. 问题与相关技能
+   - seo-audit、schema-markup、analytics-tracking、copywriting。
+
+> [!tip] 适用场景
+> - “我们要做 1000 个城市页。”
+> - “需要集成目录来获取 SEO 流量。”
+> - “批量做竞品对比页。”
+
+## 使用方式（分步）
+
+1. 定义关键词模式
+   - 明确变量、估算页面数量、验证搜索量与意图。
+2. 评估竞争与可行性
+   - 了解排名难度和需要达到的内容质量。
+3. 设定数据需求
+   - 优先一方数据，设计每页数据 schema。
+4. 选择/组合 playbook
+   - 确保每页独特价值与差异化。
+5. 设计模板结构
+   - 动态引言、数据驱动段落、CTA、相关链接。
+6. 构建内链体系
+   - Hub 页、面包屑、交叉链接、站点地图。
+7. 规划索引策略
+   - 重点页优先索引，薄内容页 noindex。
+8. 上线前质量检查
+   - 标题、schema、CWV、canonical、可抓取性。
+9. 上线后监控
+   - 索引率、排名、访问与转化。
+
+## 输出期望
+
+- 机会分析: 模式、搜索量、竞争。
+- 实施计划: 数据、模板、内链、技术栈。
+- 内容标准与独特性规则。
+- 具体模板: URL、Title、Meta、H1、结构、schema。
+
+## 常见误区
+
+- 仅变量替换导致薄内容。
+- 大量生成无搜索需求的页面。
+- 使用子域分散权重。
+
+## 适合搭配的技能
+
+- seo-audit: 上线后评估模板页质量。
+- schema-markup: 批量添加结构化数据。
+- copywriting: 非模板文案优化。

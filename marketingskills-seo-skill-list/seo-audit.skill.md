@@ -1,69 +1,97 @@
+---
+title: SEO 审计
+tags:
+  - seo
+  - audit
+  - skill
+  - marketingskills
+source: /Users/wzb/obsidian/marketingskills/skills/seo-audit/SKILL.md
+updated: 2026-01-21
+---
+
 # seo-audit
 
-Source: /Users/wzb/obsidian/marketingskills/skills/seo-audit/SKILL.md
+来源: /Users/wzb/obsidian/marketingskills/skills/seo-audit/SKILL.md
 
-## Skill trigger (prompt intent)
-- Use when user asks for SEO audit, technical SEO review, on-page SEO check, ranking issues, meta tag review, or SEO health check.
+## 技能触发（prompt 意图）
 
-## Scope in one line
-Full-site or page-level SEO audit with a strict priority order: crawlability/indexation → technical foundations → on-page → content quality → authority.
+- 用户请求 SEO 审计、技术 SEO 排查、站内 SEO 体检、排名下滑诊断、meta 标签检查或 SEO 健康检查。
 
-## Prompt structure deep dive
-1. Initial Assessment
-   - Collect site context, current state, and audit scope.
-   - Why: avoids generic audits; narrows to business goals and affected pages.
-2. Audit Framework
-   - Priority order defines what to fix first (indexing blockers before copy tweaks).
-3. Technical SEO Audit
-   - Crawlability, indexation, CWV, mobile, HTTPS, URL structure.
-   - Gives concrete checks and tools to verify.
-4. On-Page SEO Audit
-   - Title, meta, headings, content optimization, image, internal links, keyword targeting.
-5. Content Quality
-   - E-E-A-T signals and depth requirements.
-6. Common Issues by Site Type
-   - SaaS, ecommerce, blog, local business patterns to guide diagnosis.
-7. Output Format
-   - Structured audit report with issue, impact, evidence, fix, priority.
-8. Tools & Questions
-   - Reference tools and follow-up questions to refine analysis.
-9. Related Skills
-   - programmatic-seo, schema-markup, analytics-tracking, page-cro.
+## 一句话范围
 
-## Best-fit use cases
-- “Our site stopped ranking after a redesign.”
-- “Audit our SaaS site for technical SEO issues.”
-- “We want a prioritized list of SEO fixes.”
+按严格优先级执行站点或页面级 SEO 审计: 抓取/索引 → 技术基础 → 页面优化 → 内容质量 → 权威性。
 
-## How to use (step-by-step)
-1. Define goals and scope
-   - Business goal, target keywords, pages vs full site, access to GSC/analytics.
-2. Audit in priority order
-   - Start with crawlability/indexation to avoid wasted on-page work.
-3. Validate technical foundations
-   - CWV, mobile, HTTPS, URL hygiene, caching, images.
-4. Review on-page elements
-   - Titles, meta descriptions, H1 hierarchy, internal linking, keyword alignment.
-5. Evaluate content quality
-   - E-E-A-T signals, depth, uniqueness, user engagement signals.
-6. Map issues to evidence
-   - For each finding include impact, evidence, and concrete fix.
-7. Deliver action plan
-   - Critical blockers → high impact → quick wins → long-term.
-8. Ask follow-ups if data is missing
-   - Search Console access, competitors, traffic baseline, migrations.
+## 流程概览
 
-## Output expectations
-- Executive summary with top 3-5 issues and quick wins.
-- Separate sections for Technical, On-Page, Content findings.
-- Prioritized action plan with clear fix steps.
+```mermaid
+flowchart TD
+  A[明确目标与范围] --> B[抓取与索引检查]
+  B --> C[技术基础审计]
+  C --> D[页面元素审计]
+  D --> E[内容质量评估]
+  E --> F[输出问题与行动计划]
+```
 
-## Pitfalls to avoid
-- Skipping crawlability/indexation checks.
-- Treating all issues as equal priority.
-- Recommending changes without evidence or tools.
+## Prompt 结构深度解读
 
-## When to pair with other skills
-- programmatic-seo: auditing large template pages.
-- schema-markup: structured data issues.
-- analytics-tracking: measuring SEO impact post-fix.
+1. 初始评估
+   - 收集站点背景、当前状态和审计范围。
+   - 目的: 避免泛化，聚焦业务目标与关键页面。
+2. 审计框架
+   - 通过优先级排序，先处理索引阻断问题，再做页面优化。
+3. 技术 SEO 审计
+   - 抓取、索引、核心网页指标、移动端、HTTPS、URL 结构。
+4. 页面 SEO 审计
+   - 标题、描述、H1/H2 结构、内容优化、图片、内链、关键词映射。
+5. 内容质量评估
+   - E-E-A-T 信号和内容深度。
+6. 不同站点类型的常见问题
+   - SaaS、电商、内容站、本地商家常见 SEO 痛点。
+7. 输出格式
+   - 结构化报告: Issue/Impact/Evidence/Fix/Priority。
+8. 工具与补充问题
+   - 引用工具与追加问题，完善证据链。
+9. 相关技能
+   - programmatic-seo、schema-markup、analytics-tracking、page-cro。
+
+> [!tip] 适用场景
+> - “我们改版后排名下降，帮忙做一次诊断。”
+> - “请给我们做一次技术 SEO 审计并排序。”
+> - “我要一个优先级清晰的修复清单。”
+
+## 使用方式（分步）
+
+1. 明确目标与范围
+   - 业务目标、核心关键词、全站或重点页面、是否有 GSC/Analytics 权限。
+2. 按优先级审计
+   - 先看抓取与索引，避免在不可索引页面上做优化。
+3. 验证技术基础
+   - CWV、移动端、HTTPS、URL 规范、缓存与图片。
+4. 审核页面要素
+   - 标题/描述、H1 结构、内链与关键词匹配度。
+5. 评估内容质量
+   - E-E-A-T、深度、独特性、用户信号。
+6. 形成证据链
+   - 每个问题都包含影响、证据与修复建议。
+7. 输出优先级行动计划
+   - 关键阻断 → 高影响 → 快速收益 → 长期改进。
+8. 缺信息时补问
+   - GSC 权限、竞争对手、流量基线、迁移历史。
+
+## 输出期望
+
+- Executive Summary: 3-5 个最高优先级问题 + 快速收益。
+- 技术/页面/内容分区结论。
+- 明确的修复计划与优先级。
+
+## 常见误区
+
+- 跳过抓取与索引检查。
+- 不区分优先级，所有问题同权重。
+- 缺乏证据或工具支撑。
+
+## 适合搭配的技能
+
+- programmatic-seo: 审计模板化页面体系。
+- schema-markup: 结构化数据问题。
+- analytics-tracking: 修复后效果追踪。

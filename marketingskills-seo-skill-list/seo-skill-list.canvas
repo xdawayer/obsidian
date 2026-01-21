@@ -1,0 +1,115 @@
+{
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "text",
+      "x": 0,
+      "y": 0,
+      "width": 320,
+      "height": 60,
+      "text": "SEO 技能导航（中文）"
+    },
+    {
+      "id": "n2",
+      "type": "file",
+      "x": 0,
+      "y": 120,
+      "width": 320,
+      "height": 60,
+      "file": "README.md"
+    },
+    {
+      "id": "n3",
+      "type": "file",
+      "x": 0,
+      "y": 220,
+      "width": 320,
+      "height": 60,
+      "file": "seo-audit.skill.md"
+    },
+    {
+      "id": "n4",
+      "type": "file",
+      "x": 0,
+      "y": 320,
+      "width": 320,
+      "height": 60,
+      "file": "programmatic-seo.skill.md"
+    },
+    {
+      "id": "n5",
+      "type": "file",
+      "x": 0,
+      "y": 420,
+      "width": 320,
+      "height": 60,
+      "file": "schema-markup.skill.md"
+    },
+    {
+      "id": "n6",
+      "type": "file",
+      "x": 0,
+      "y": 520,
+      "width": 320,
+      "height": 60,
+      "file": "competitor-alternatives.skill.md"
+    },
+    {
+      "id": "n7",
+      "type": "file",
+      "x": 0,
+      "y": 620,
+      "width": 320,
+      "height": 60,
+      "file": "free-tool-strategy.skill.md"
+    },
+    {
+      "id": "n8",
+      "type": "file",
+      "x": 360,
+      "y": 220,
+      "width": 320,
+      "height": 60,
+      "file": "marketing-ideas.skill.md"
+    },
+    {
+      "id": "n9",
+      "type": "file",
+      "x": 360,
+      "y": 320,
+      "width": 320,
+      "height": 60,
+      "file": "marketing-psychology.skill.md"
+    },
+    {
+      "id": "n10",
+      "type": "file",
+      "x": 360,
+      "y": 420,
+      "width": 320,
+      "height": 60,
+      "file": "popup-cro.skill.md"
+    },
+    {
+      "id": "n11",
+      "type": "file",
+      "x": 360,
+      "y": 520,
+      "width": 320,
+      "height": 60,
+      "file": "copywriting.skill.md"
+    }
+  ],
+  "edges": [
+    {"id": "e1", "fromNode": "n1", "toNode": "n2"},
+    {"id": "e2", "fromNode": "n2", "toNode": "n3"},
+    {"id": "e3", "fromNode": "n2", "toNode": "n4"},
+    {"id": "e4", "fromNode": "n2", "toNode": "n5"},
+    {"id": "e5", "fromNode": "n2", "toNode": "n6"},
+    {"id": "e6", "fromNode": "n2", "toNode": "n7"},
+    {"id": "e7", "fromNode": "n2", "toNode": "n8"},
+    {"id": "e8", "fromNode": "n2", "toNode": "n9"},
+    {"id": "e9", "fromNode": "n2", "toNode": "n10"},
+    {"id": "e10", "fromNode": "n2", "toNode": "n11"}
+  ]
+}

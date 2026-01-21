@@ -1,57 +1,86 @@
+---
+title: 文案写作（含 SEO 元信息）
+tags:
+  - seo
+  - copywriting
+  - content
+  - skill
+  - marketingskills
+source: /Users/wzb/obsidian/marketingskills/skills/copywriting/SKILL.md
+updated: 2026-01-21
+---
+
 # copywriting
 
-Source: /Users/wzb/obsidian/marketingskills/skills/copywriting/SKILL.md
+来源: /Users/wzb/obsidian/marketingskills/skills/copywriting/SKILL.md
 
-## Skill trigger (prompt intent)
-- Use when the user wants to write, rewrite, or improve marketing copy for a page.
+## 技能触发（prompt 意图）
 
-## Scope in one line
-Write clear, persuasive page copy with optional SEO meta content and FAQ sections.
+- 用户需要撰写、改写或优化页面营销文案。
 
-## Prompt structure deep dive
-1. Before Writing
-   - Gather page purpose, audience, product, and traffic context.
-2. Principles and Style Rules
-   - Clarity, benefits, specificity, customer language.
-3. Page Structure Framework
-   - Hero, social proof, pain, benefits, how it works, objections, CTA.
-4. Section Variety
-   - Include FAQ and comparison sections when relevant.
-5. Output Format
-   - Page copy by section, annotations, alternatives, and meta content (title, description).
-6. Page-Specific Guidance
-   - Homepage, landing, pricing, feature, about.
-7. Related Skills
-   - copy-editing, page-cro, email-sequence, popup-cro.
+## 一句话范围
 
-## Best-fit use cases
-- “Write landing page copy that also needs SEO meta.”
-- “Add an FAQ section for organic intent coverage.”
-- “Refresh copy after SEO-driven traffic changes.”
+撰写清晰有说服力的页面文案，并在需要时提供 SEO 元信息与 FAQ。
 
-## How to use (step-by-step)
-1. Capture context
-   - Include traffic source and what visitors already know.
-2. Draft the core story
-   - Lead with value prop, then build problem, solution, proof, CTA.
-3. Add SEO-friendly elements
-   - Provide page title and meta description if relevant.
-   - Include FAQ section when it reduces objections and supports discovery.
-4. Provide alternatives
-   - Offer multiple headline and CTA options with rationale.
-5. Polish
-   - Run copy through copy-editing for a final sweep.
+## 流程概览
 
-## Output expectations
-- Sectioned page copy with labels and rationale.
-- Meta title and meta description when requested or relevant.
+```mermaid
+flowchart TD
+  A[收集页面与受众信息] --> B[构建页面叙事]
+  B --> C[补充 SEO 元信息]
+  C --> D[提供备选方案]
+  D --> E[最终润色]
+```
 
-## Pitfalls to avoid
-- Ignoring traffic context (organic vs paid).
-- Skipping meta content when SEO is a goal.
-- Overloading the page with sections without a clear flow.
+## Prompt 结构深度解读
 
-## When to pair with other skills
-- seo-audit: when rankings are the primary concern.
-- competitor-alternatives: when comparison copy is needed.
-- schema-markup: if FAQ schema will be added.
+1. 写作前信息
+   - 页面目的、受众、产品、流量上下文。
+2. 原则与风格
+   - 清晰、利益导向、具体性、客户语言。
+3. 页面结构框架
+   - 主视觉、社证、问题、收益、流程、异议、CTA。
+4. 章节多样性
+   - FAQ、对比等增强说明与覆盖。
+5. 输出格式
+   - 分区文案、注释、备选方案、Meta 标题/描述。
+6. 页面类型建议
+   - 首页、落地页、定价页、功能页、关于页。
+7. 相关技能
+   - copy-editing、page-cro、email-sequence、popup-cro。
+
+> [!tip] 适用场景
+> - “落地页文案需要同时兼顾 SEO 元信息。”
+> - “补充 FAQ 以覆盖搜索意图。”
+> - “SEO 流量变化后重写页面信息架构。”
+
+## 使用方式（分步）
+
+1. 获取上下文
+   - 明确流量来源与用户已知信息。
+2. 先写核心叙事
+   - 价值主张 → 问题 → 方案 → 证据 → CTA。
+3. 添加 SEO 要素
+   - 提供标题与描述（如相关）。
+   - 需要时加入 FAQ。
+4. 提供备选方案
+   - 多个标题与 CTA 方案并说明理由。
+5. 细致润色
+   - 交由 copy-editing 做最终打磨。
+
+## 输出期望
+
+- 按章节输出文案并附理由。
+- 需要时包含 Meta 标题与描述。
+
+## 常见误区
+
+- 忽视流量上下文差异。
+- SEO 目标下缺少 Meta 内容。
+- 章节堆叠而没有清晰叙事逻辑。
+
+## 适合搭配的技能
+
+- seo-audit: 当排名是主要目标时。
+- competitor-alternatives: 需要对比类文案时。
+- schema-markup: 若要配合 FAQ schema。

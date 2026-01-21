@@ -1,72 +1,103 @@
+---
+title: 免费工具策略
+tags:
+  - seo
+  - leadgen
+  - tool
+  - skill
+  - marketingskills
+source: /Users/wzb/obsidian/marketingskills/skills/free-tool-strategy/SKILL.md
+updated: 2026-01-21
+---
+
 # free-tool-strategy
 
-Source: /Users/wzb/obsidian/marketingskills/skills/free-tool-strategy/SKILL.md
+来源: /Users/wzb/obsidian/marketingskills/skills/free-tool-strategy/SKILL.md
 
-## Skill trigger (prompt intent)
-- Use when user wants a free tool for marketing: calculator, generator, analyzer, lead-gen tool, engineering-as-marketing, SEO value.
+## 技能触发（prompt 意图）
 
-## Scope in one line
-Design free tools that attract organic traffic, earn links, and convert users into leads.
+- 免费工具、计算器、生成器、分析器、营销工具、工程化营销、SEO 价值。
 
-## Prompt structure deep dive
-1. Initial Assessment
-   - Business context, goals, resources.
-2. Core Principles
-   - Solve real problem, adjacent to product, simplicity, ROI.
-3. Tool Types
-   - Calculators, generators, analyzers, testers, libraries, interactive education.
-4. Ideation Framework
-   - Pain points, manual tasks, pre-buy needs, missing info.
-5. SEO Considerations
-   - Keyword strategy, link building, technical SEO requirements.
-6. Lead Capture Strategy
-   - Gating options and post-capture nurture.
+## 一句话范围
+
+设计能带来流量、链接和线索转化的免费工具。
+
+## 流程概览
+
+```mermaid
+flowchart TD
+  A[明确目标] --> B[选择工具类型]
+  B --> C[验证需求与差异化]
+  C --> D[确定构建方式]
+  D --> E[MVP 设计]
+  E --> F[SEO 与推广]
+  F --> G[指标与迭代]
+```
+
+## Prompt 结构深度解读
+
+1. 初始评估
+   - 业务背景、目标、资源。
+2. 核心原则
+   - 真实问题、与产品相邻、简单、ROI 可行。
+3. 工具类型
+   - 计算器、生成器、分析器、测试器、资源库、交互式教学。
+4. 选题框架
+   - 用户痛点、手工流程、购买前需求、信息缺口。
+5. SEO 考量
+   - 关键词、链接建设、技术 SEO。
+6. 线索捕获
+   - 全量/部分/可选 gating 以及后续培育。
 7. Build vs Buy vs Embed
-   - Custom build vs no-code vs embed.
-8. MVP Scope
-   - Minimum viable tool with core functionality and basic UX.
-9. Promotion and Measurement
-   - Launch channels, ongoing SEO/social, metrics and attribution.
-10. Evaluation Framework
-   - Scorecard and ROI projection.
-11. Output Format
-   - Tool strategy document + implementation spec.
+   - 自研、无代码、嵌入第三方。
+8. MVP 范围
+   - 核心功能 + 基础 UX + 基本采集。
+9. 推广与衡量
+   - 启动渠道、长期 SEO 与社媒、核心指标。
+10. 评估框架
+   - 评分卡与 ROI 估算。
+11. 输出格式
+   - 工具策略文档 + 实施规格。
 
-## Best-fit use cases
-- “We want a free SEO analyzer to generate leads.”
-- “Build a calculator to rank for a keyword.”
-- “What free tool could drive backlinks for us?”
+> [!tip] 适用场景
+> - “做一个免费 SEO 分析器获取线索。”
+> - “做计算器争夺某个关键词流量。”
+> - “找一个能自然获取链接的免费工具。”
 
-## How to use (step-by-step)
-1. Clarify business goals
-   - Lead gen vs SEO traffic vs brand awareness.
-2. Identify tool concept
-   - Choose tool type based on audience pain points.
-3. Validate search demand and uniqueness
-   - Keyword research and differentiation.
-4. Decide build approach
-   - Custom, no-code, or embed.
-5. Define MVP scope
-   - Core input/output, minimal UX, basic capture.
-6. Plan SEO strategy
-   - Tool landing page keywords, supporting content, schema if relevant.
-7. Choose lead capture model
-   - Full/partial/optional gating and nurture flow.
-8. Launch and promote
-   - Owned channels + outreach for links.
-9. Measure and iterate
-   - Track traffic, backlinks, usage, and conversion to pipeline.
+## 使用方式（分步）
 
-## Output expectations
-- Tool strategy document with keywords, build approach, and promotion plan.
-- Lead capture and success metrics clearly defined.
+1. 明确业务目标
+   - 线索、SEO 流量、品牌影响力。
+2. 选择工具概念
+   - 根据用户痛点确定工具类型。
+3. 验证搜索需求与差异化
+   - 关键词研究与竞争对比。
+4. 决定构建方式
+   - 自研 / 无代码 / 嵌入。
+5. 定义 MVP
+   - 核心输入与输出，最低 UX。
+6. 规划 SEO 策略
+   - 工具页关键词 + 关联内容 + schema（如适用）。
+7. 选择线索捕获方式
+   - 全量/部分/可选 gating + 触达路径。
+8. 上线与推广
+   - 自有渠道 + 外部资源与链接建设。
+9. 衡量与迭代
+   - 流量、链接、使用率、转化与管道贡献。
 
-## Pitfalls to avoid
-- Building tools unrelated to product or buyer intent.
-- Gating too early and killing usage.
-- Ignoring performance and crawlability.
+## 输出期望
 
-## When to pair with other skills
-- seo-audit: optimize the tool page for SEO.
-- programmatic-seo: scale tool-related pages.
-- analytics-tracking: measure tool performance.
+- 工具策略文档（关键词、构建方式、推广方案）。
+- 线索捕获与成功指标清晰。
+
+## 常见误区
+
+- 工具与产品无关，线索质量低。
+- 过早强制 gating 影响使用。
+- 忽视性能与可抓取性。
+
+## 适合搭配的技能
+
+- seo-audit: 工具页面 SEO 优化。
+- programmatic-seo: 扩展工具相关页面。
+- analytics-tracking: 评估工具效果。
