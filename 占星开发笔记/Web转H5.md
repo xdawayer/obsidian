@@ -786,3 +786,5 @@
 
 
 	5.细调界面的表现
+	6. Claude code opus 写propose
+	7. opencode + codex High ultrawork写
