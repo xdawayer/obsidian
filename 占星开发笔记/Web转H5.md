@@ -780,7 +780,9 @@
       dimensions: string[];          // 已解锁维度ID                            
       coreThemes: string[];          // 已解锁主题ID                            
       synastryHashes: string[];      // 已解锁合盘                    
-```
 	3. 使用aistudio生成初版界面，然后再进行细化
 	4. 界面表现非常不错。后续细化内容
 	![](assets/Web转H5/file-20260122151210706.png)![](assets/Web转H5/file-20260122151300169.png)
+
+
+	5.细调界面的表现
