@@ -39,7 +39,7 @@
     ]
   },
   "permissionMode": "yolo",
-  "model": "sonnet",
+  "model": "opus",
   "thinkingBudget": "xhigh",
   "enableAutoTitleGeneration": true,
   "titleGenerationModel": "",
@@ -63,7 +63,7 @@
   "claudeCliPath": "",
   "claudeCliPathsByHost": {},
   "loadUserClaudeSettings": true,
-  "lastClaudeModel": "sonnet",
+  "lastClaudeModel": "opus",
   "lastCustomModel": "",
   "lastEnvHash": "",
   "enabledPlugins": [],
