@@ -2,17 +2,17 @@
   "id": "6c388e95-6036-4a6f-81e9-984153c8c736",
   "title": "/plugin marketplace add kepano/obsidian-skills",
   "createdAt": 1768666089688,
-  "updatedAt": 1769702813054,
-  "lastResponseAt": 1769702813054,
+  "updatedAt": 1769705465582,
+  "lastResponseAt": 1769705465582,
   "sessionId": "6c388e95-6036-4a6f-81e9-984153c8c736",
   "sdkSessionId": "6c388e95-6036-4a6f-81e9-984153c8c736",
   "usage": {
     "model": "claude-opus-4-5-20251101",
-    "inputTokens": 154,
-    "cacheCreationInputTokens": 68201,
-    "cacheReadInputTokens": 545757,
+    "inputTokens": 188,
+    "cacheCreationInputTokens": 71894,
+    "cacheReadInputTokens": 733784,
     "contextWindow": 200000,
-    "contextTokens": 614112,
+    "contextTokens": 805866,
     "percentage": 100
   },
   "toolDiffData": {
