@@ -1,5 +1,5 @@
 {
-  "userName": "",
+  "userName": "彪哥",
   "enableBlocklist": true,
   "blockedCommands": {
     "unix": [
@@ -42,8 +42,8 @@
   "model": "opus",
   "thinkingBudget": "xhigh",
   "enableAutoTitleGeneration": true,
-  "titleGenerationModel": "",
-  "show1MModel": false,
+  "titleGenerationModel": "opus",
+  "show1MModel": true,
   "excludedTags": [],
   "mediaFolder": "",
   "systemPrompt": "",
