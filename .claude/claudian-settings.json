@@ -52,7 +52,7 @@
     "~/Downloads"
   ],
   "persistentExternalContextPaths": [],
-  "environmentVariables": "",
+  "environmentVariables": "HTTP_PROXY=http://127.0.0.1:1087\nHTTPS_PROXY=http://127.0.0.1:1087",
   "envSnippets": [],
   "keyboardNavigation": {
     "scrollUpKey": "w",
@@ -61,7 +61,9 @@
   },
   "locale": "zh-CN",
   "claudeCliPath": "",
-  "claudeCliPathsByHost": {},
+  "claudeCliPathsByHost": {
+    "192.168.1.205": "/Users/wzb/.local/bin/claude"
+  },
   "loadUserClaudeSettings": true,
   "lastClaudeModel": "opus",
   "lastCustomModel": "",
