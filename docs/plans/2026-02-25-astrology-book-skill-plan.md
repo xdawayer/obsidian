@@ -66,6 +66,18 @@ All 10 files passed validation. Neptune CN slightly over word limit (12623 vs 12
 
 All 10 files passed validation (47/47). Zero errors across all 5 books.
 
+### Book Deconstruction Batch 5: 5 Books COMPLETED
+
+| # | Book | Subtype | CN Status | EN Status | Validation |
+|---|------|---------|-----------|-----------|------------|
+| 21 | The Archetypal Universe — Renn Butler | 神话与原型 | 8951字 | 4328 words | 47/47 |
+| 22 | Jung's Studies in Astrology — Liz Greene | 占星哲学与历史 | 10156字 | 5492 words | 47/47 |
+| 23 | The Book of Pluto — Steven Forrest | 演化占星 | 10892字 | 5648 words | 47/47 |
+| 24 | Cycles of Becoming — Alexander Ruperti | 行运与预测 | 9371字 | 3975 words | 47/47 |
+| 25 | Relating — Liz Greene | 心理占星 | 9867字 | 4242 words | 47/47 |
+
+All 10 files passed validation (47/47). Zero errors across all 5 books.
+
 ### Output Files
 
 Batch 1 — Chinese:
@@ -124,18 +136,32 @@ Batch 4 — English:
 - `~/obsidian/占星书/英文/《Horoscope Symbols》 - Robert Hand.md`
 - `~/obsidian/占星书/英文/《Chart Interpretation Handbook》 - Stephen Arroyo.md`
 
+Batch 5 — Chinese:
+- `~/obsidian/占星书/中文/《The Archetypal Universe》 - Renn Butler.md`
+- `~/obsidian/占星书/中文/《Jung's Studies in Astrology》 - Liz Greene.md`
+- `~/obsidian/占星书/中文/《The Book of Pluto》 - Steven Forrest.md`
+- `~/obsidian/占星书/中文/《Cycles of Becoming》 - Alexander Ruperti.md`
+- `~/obsidian/占星书/中文/《Relating》 - Liz Greene.md`
+
+Batch 5 — English:
+- `~/obsidian/占星书/英文/《The Archetypal Universe》 - Renn Butler.md`
+- `~/obsidian/占星书/英文/《Jung's Studies in Astrology》 - Liz Greene.md`
+- `~/obsidian/占星书/英文/《The Book of Pluto》 - Steven Forrest.md`
+- `~/obsidian/占星书/英文/《Cycles of Becoming》 - Alexander Ruperti.md`
+- `~/obsidian/占星书/英文/《Relating》 - Liz Greene.md`
+
 ### Subtype Coverage Summary
 
 | 子类型 | Books Covered |
 |--------|--------------|
 | 入门教程 | The Inner Sky, Astrology Psychology and the Four Elements, The Only Astrology Book You'll Ever Need, Chart Interpretation Handbook |
-| 心理占星 | Saturn, The Twelve Houses, The Astrology of Fate, Neptune: The Quest for Redemption, The Development of the Personality |
-| 演化占星 | Yesterday's Sky, Pluto: The Evolutionary Journey of the Soul, Astrology for the Soul |
-| 占星哲学与历史 | Cosmos and Psyche, Prometheus the Awakener, Horoscope Symbols |
-| 神话与原型 | Mythic Astrology, Asteroid Goddesses |
-| 行运与预测 | Planets in Transit, The Changing Sky, Predictive Astrology: The Eagle and the Lark |
+| 心理占星 | Saturn, The Twelve Houses, The Astrology of Fate, Neptune: The Quest for Redemption, The Development of the Personality, Relating |
+| 演化占星 | Yesterday's Sky, Pluto: The Evolutionary Journey of the Soul, Astrology for the Soul, The Book of Pluto |
+| 占星哲学与历史 | Cosmos and Psyche, Prometheus the Awakener, Horoscope Symbols, Jung's Studies in Astrology |
+| 神话与原型 | Mythic Astrology, Asteroid Goddesses, The Archetypal Universe |
+| 行运与预测 | Planets in Transit, The Changing Sky, Predictive Astrology: The Eagle and the Lark, Cycles of Becoming |
 
-All 6 subtypes covered with substantial depth. Total: 20 books, 40 files.
+All 6 subtypes covered with substantial depth. Total: 25 books, 50 files.
 
 ---
 
