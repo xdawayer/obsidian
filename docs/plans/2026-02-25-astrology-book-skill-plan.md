@@ -78,6 +78,18 @@ All 10 files passed validation (47/47). Zero errors across all 5 books.
 
 All 10 files passed validation (47/47). Zero errors across all 5 books.
 
+### Book Deconstruction Batch 6: 5 Books COMPLETED
+
+| # | Book | Subtype | CN Status | EN Status | Validation |
+|---|------|---------|-----------|-----------|------------|
+| 26 | Chiron and the Healing Journey — Melanie Reinhart | 神话与原型 | 9527字 | 4422 words | 47/47 |
+| 27 | Parker's Astrology — Julia & Derek Parker | 入门教程 | 9023字 | 3549 words | 46/47 + 1⚠️ |
+| 28 | Pluto Vol II: The Soul's Evolution Through Relationships — Jeffrey Wolf Green | 演化占星 | 10571字 | 4646 words | 47/47 |
+| 29 | The Gods of Change — Howard Sasportas | 行运与预测 | 10081字 | 3797 words | 46/47 + 1⚠️ |
+| 30 | A History of Western Astrology Vol I — Nicholas Campion | 占星哲学与历史 | 11463字 | 5296 words | 47/47 |
+
+All 10 files passed validation. Fix applied: EN "developmental model" → "developmental framework" to avoid false positive on "mental model" substring match. Warnings: Parker's CN slightly over word limit (9023 vs 8000), Gods of Change CN slightly over (10081 vs 10000), both within 15% tolerance.
+
 ### Output Files
 
 Batch 1 — Chinese:
@@ -150,18 +162,32 @@ Batch 5 — English:
 - `~/obsidian/占星书/英文/《Cycles of Becoming》 - Alexander Ruperti.md`
 - `~/obsidian/占星书/英文/《Relating》 - Liz Greene.md`
 
+Batch 6 — Chinese:
+- `~/obsidian/占星书/中文/《Chiron and the Healing Journey》 - Melanie Reinhart.md`
+- `~/obsidian/占星书/中文/《Parker's Astrology》 - Julia & Derek Parker.md`
+- `~/obsidian/占星书/中文/《Pluto Vol II The Soul's Evolution Through Relationships》 - Jeffrey Wolf Green.md`
+- `~/obsidian/占星书/中文/《The Gods of Change》 - Howard Sasportas.md`
+- `~/obsidian/占星书/中文/《A History of Western Astrology Vol I》 - Nicholas Campion.md`
+
+Batch 6 — English:
+- `~/obsidian/占星书/英文/《Chiron and the Healing Journey》 - Melanie Reinhart.md`
+- `~/obsidian/占星书/英文/《Parker's Astrology》 - Julia & Derek Parker.md`
+- `~/obsidian/占星书/英文/《Pluto Vol II The Soul's Evolution Through Relationships》 - Jeffrey Wolf Green.md`
+- `~/obsidian/占星书/英文/《The Gods of Change》 - Howard Sasportas.md`
+- `~/obsidian/占星书/英文/《A History of Western Astrology Vol I》 - Nicholas Campion.md`
+
 ### Subtype Coverage Summary
 
 | 子类型 | Books Covered |
 |--------|--------------|
-| 入门教程 | The Inner Sky, Astrology Psychology and the Four Elements, The Only Astrology Book You'll Ever Need, Chart Interpretation Handbook |
+| 入门教程 | The Inner Sky, Astrology Psychology and the Four Elements, The Only Astrology Book You'll Ever Need, Chart Interpretation Handbook, Parker's Astrology |
 | 心理占星 | Saturn, The Twelve Houses, The Astrology of Fate, Neptune: The Quest for Redemption, The Development of the Personality, Relating |
-| 演化占星 | Yesterday's Sky, Pluto: The Evolutionary Journey of the Soul, Astrology for the Soul, The Book of Pluto |
-| 占星哲学与历史 | Cosmos and Psyche, Prometheus the Awakener, Horoscope Symbols, Jung's Studies in Astrology |
-| 神话与原型 | Mythic Astrology, Asteroid Goddesses, The Archetypal Universe |
-| 行运与预测 | Planets in Transit, The Changing Sky, Predictive Astrology: The Eagle and the Lark, Cycles of Becoming |
+| 演化占星 | Yesterday's Sky, Pluto: The Evolutionary Journey of the Soul, Astrology for the Soul, The Book of Pluto, Pluto Vol II: The Soul's Evolution Through Relationships |
+| 占星哲学与历史 | Cosmos and Psyche, Prometheus the Awakener, Horoscope Symbols, Jung's Studies in Astrology, A History of Western Astrology Vol I |
+| 神话与原型 | Mythic Astrology, Asteroid Goddesses, The Archetypal Universe, Chiron and the Healing Journey |
+| 行运与预测 | Planets in Transit, The Changing Sky, Predictive Astrology: The Eagle and the Lark, Cycles of Becoming, The Gods of Change |
 
-All 6 subtypes covered with substantial depth. Total: 25 books, 50 files.
+All 6 subtypes covered with substantial depth. Total: 30 books, 60 files.
 
 ---
 
