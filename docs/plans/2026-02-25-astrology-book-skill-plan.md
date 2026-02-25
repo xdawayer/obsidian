@@ -54,6 +54,18 @@ All 10 files passed validation (47/47). Fix applied: EN "developmental model" �
 
 All 10 files passed validation. Neptune CN slightly over word limit (12623 vs 12000 upper bound) but within 15% tolerance.
 
+### Book Deconstruction Batch 4: 5 Books COMPLETED
+
+| # | Book | Subtype | CN Status | EN Status | Validation |
+|---|------|---------|-----------|-----------|------------|
+| 16 | Asteroid Goddesses — Demetra George & Douglas Bloch | 神话与原型 | 9900字 | 4078 words | 47/47 |
+| 17 | The Development of the Personality — Liz Greene & Howard Sasportas | 心理占星 | 11238字 | 4079 words | 47/47 |
+| 18 | Predictive Astrology: The Eagle and the Lark — Bernadette Brady | 行运与预测 | 9098字 | 3987 words | 47/47 |
+| 19 | Horoscope Symbols — Robert Hand | 占星哲学与历史 | 12799字 | 5343 words | 47/47 |
+| 20 | Chart Interpretation Handbook — Stephen Arroyo | 入门教程 | 7716字 | 3595 words | 47/47 |
+
+All 10 files passed validation (47/47). Zero errors across all 5 books.
+
 ### Output Files
 
 Batch 1 — Chinese:
@@ -98,18 +110,32 @@ Batch 3 — English:
 - `~/obsidian/占星书/英文/《Neptune The Quest for Redemption》 - Liz Greene.md`
 - `~/obsidian/占星书/英文/《Prometheus the Awakener》 - Richard Tarnas.md`
 
+Batch 4 — Chinese:
+- `~/obsidian/占星书/中文/《Asteroid Goddesses》 - Demetra George & Douglas Bloch.md`
+- `~/obsidian/占星书/中文/《The Development of the Personality》 - Liz Greene & Howard Sasportas.md`
+- `~/obsidian/占星书/中文/《Predictive Astrology The Eagle and the Lark》 - Bernadette Brady.md`
+- `~/obsidian/占星书/中文/《Horoscope Symbols》 - Robert Hand.md`
+- `~/obsidian/占星书/中文/《Chart Interpretation Handbook》 - Stephen Arroyo.md`
+
+Batch 4 — English:
+- `~/obsidian/占星书/英文/《Asteroid Goddesses》 - Demetra George & Douglas Bloch.md`
+- `~/obsidian/占星书/英文/《The Development of the Personality》 - Liz Greene & Howard Sasportas.md`
+- `~/obsidian/占星书/英文/《Predictive Astrology The Eagle and the Lark》 - Bernadette Brady.md`
+- `~/obsidian/占星书/英文/《Horoscope Symbols》 - Robert Hand.md`
+- `~/obsidian/占星书/英文/《Chart Interpretation Handbook》 - Stephen Arroyo.md`
+
 ### Subtype Coverage Summary
 
 | 子类型 | Books Covered |
 |--------|--------------|
-| 入门教程 | The Inner Sky, Astrology Psychology and the Four Elements, The Only Astrology Book You'll Ever Need |
-| 心理占星 | Saturn, The Twelve Houses, The Astrology of Fate, Neptune: The Quest for Redemption |
+| 入门教程 | The Inner Sky, Astrology Psychology and the Four Elements, The Only Astrology Book You'll Ever Need, Chart Interpretation Handbook |
+| 心理占星 | Saturn, The Twelve Houses, The Astrology of Fate, Neptune: The Quest for Redemption, The Development of the Personality |
 | 演化占星 | Yesterday's Sky, Pluto: The Evolutionary Journey of the Soul, Astrology for the Soul |
-| 占星哲学与历史 | Cosmos and Psyche, Prometheus the Awakener |
-| 神话与原型 | Mythic Astrology |
-| 行运与预测 | Planets in Transit, The Changing Sky |
+| 占星哲学与历史 | Cosmos and Psyche, Prometheus the Awakener, Horoscope Symbols |
+| 神话与原型 | Mythic Astrology, Asteroid Goddesses |
+| 行运与预测 | Planets in Transit, The Changing Sky, Predictive Astrology: The Eagle and the Lark |
 
-All 6 subtypes covered with depth. Total: 15 books, 30 files.
+All 6 subtypes covered with substantial depth. Total: 20 books, 40 files.
 
 ---
 
