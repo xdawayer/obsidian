@@ -18,7 +18,7 @@
 
 All 8 tasks executed via subagent-driven development on 2026-02-25.
 
-### Book Deconstruction Batch: 5 Books COMPLETED
+### Book Deconstruction Batch 1: 5 Books COMPLETED
 
 | # | Book | Subtype | CN Status | EN Status | Validation |
 |---|------|---------|-----------|-----------|------------|
@@ -28,27 +28,62 @@ All 8 tasks executed via subagent-driven development on 2026-02-25.
 | 4 | Cosmos and Psyche — Richard Tarnas | 占星哲学与历史 | 10156字 | 5023 words | 47/47 |
 | 5 | Mythic Astrology — Ariel Guttman & Kenneth Johnson | 神话与原型 | 8961字 | 4352 words | 47/47 |
 
-All 10 files passed validation scripts (47/47 checks each). Common fix applied: English overview blockquote format (3 files needed `>` prefix added).
+All 10 files passed validation (47/47). Fix applied: English overview blockquote format (3 files).
+
+### Book Deconstruction Batch 2: 5 Books COMPLETED
+
+| # | Book | Subtype | CN Status | EN Status | Validation |
+|---|------|---------|-----------|-----------|------------|
+| 6 | Planets in Transit — Robert Hand | 行运与预测 | 8852字 | 4106 words | 47/47 |
+| 7 | The Twelve Houses — Howard Sasportas | 心理占星 | 10848字 | 5117 words | 47/47 |
+| 8 | Astrology, Psychology, and the Four Elements — Stephen Arroyo | 入门教程 | 8960字 | 3548 words | 47/47 |
+| 9 | Pluto: The Evolutionary Journey of the Soul — Jeffrey Wolf Green | 演化占星 | 9391字 | 4725 words | 47/47 |
+| 10 | The Astrology of Fate — Liz Greene | 心理占星 | 9045字 | 4914 words | 47/47 |
+
+All 10 files passed validation (47/47). Fix applied: EN "developmental model" → "developmental arc/framework" to avoid false positive on "mental model" substring match.
 
 ### Output Files
 
-Chinese:
+Batch 1 — Chinese:
 - `~/obsidian/占星书/中文/《The Inner Sky》 - Steven Forrest.md`
 - `~/obsidian/占星书/中文/《Saturn A New Look at an Old Devil》 - Liz Greene.md`
 - `~/obsidian/占星书/中文/《Yesterday's Sky》 - Steven Forrest.md`
 - `~/obsidian/占星书/中文/《Cosmos and Psyche》 - Richard Tarnas.md`
 - `~/obsidian/占星书/中文/《Mythic Astrology》 - Ariel Guttman & Kenneth Johnson.md`
 
-English:
+Batch 1 — English:
 - `~/obsidian/占星书/英文/《The Inner Sky》 - Steven Forrest.md`
 - `~/obsidian/占星书/英文/《Saturn A New Look at an Old Devil》 - Liz Greene.md`
 - `~/obsidian/占星书/英文/《Yesterday's Sky》 - Steven Forrest.md`
 - `~/obsidian/占星书/英文/《Cosmos and Psyche》 - Richard Tarnas.md`
 - `~/obsidian/占星书/英文/《Mythic Astrology》 - Ariel Guttman & Kenneth Johnson.md`
 
-### Remaining Subtypes Not Yet Covered
+Batch 2 — Chinese:
+- `~/obsidian/占星书/中文/《Planets in Transit》 - Robert Hand.md`
+- `~/obsidian/占星书/中文/《The Twelve Houses》 - Howard Sasportas.md`
+- `~/obsidian/占星书/中文/《Astrology, Psychology, and the Four Elements》 - Stephen Arroyo.md`
+- `~/obsidian/占星书/中文/《Pluto The Evolutionary Journey of the Soul》 - Jeffrey Wolf Green.md`
+- `~/obsidian/占星书/中文/《The Astrology of Fate》 - Liz Greene.md`
 
-- 行运与预测 (Transits and Prediction) — suggested next: Robert Hand《Planets in Transit》
+Batch 2 — English:
+- `~/obsidian/占星书/英文/《Planets in Transit》 - Robert Hand.md`
+- `~/obsidian/占星书/英文/《The Twelve Houses》 - Howard Sasportas.md`
+- `~/obsidian/占星书/英文/《Astrology, Psychology, and the Four Elements》 - Stephen Arroyo.md`
+- `~/obsidian/占星书/英文/《Pluto The Evolutionary Journey of the Soul》 - Jeffrey Wolf Green.md`
+- `~/obsidian/占星书/英文/《The Astrology of Fate》 - Liz Greene.md`
+
+### Subtype Coverage Summary
+
+| 子类型 | Books Covered |
+|--------|--------------|
+| 入门教程 | The Inner Sky, Astrology Psychology and the Four Elements |
+| 心理占星 | Saturn, The Twelve Houses, The Astrology of Fate |
+| 演化占星 | Yesterday's Sky, Pluto: The Evolutionary Journey of the Soul |
+| 占星哲学与历史 | Cosmos and Psyche |
+| 神话与原型 | Mythic Astrology |
+| 行运与预测 | Planets in Transit |
+
+All 6 subtypes now covered. Total: 10 books, 20 files.
 
 ---
 
