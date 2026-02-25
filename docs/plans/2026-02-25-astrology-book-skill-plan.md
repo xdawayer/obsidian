@@ -8,6 +8,48 @@
 
 **Tech Stack:** Markdown skill files, Bash validation script (with perl for CJK char counting and English word counting)
 
+**Status:** All 8 implementation tasks completed. Skill smoke-tested and operational.
+
+---
+
+## Execution Log
+
+### Skill Implementation (Tasks 1-8): COMPLETED
+
+All 8 tasks executed via subagent-driven development on 2026-02-25.
+
+### Book Deconstruction Batch: 5 Books COMPLETED
+
+| # | Book | Subtype | CN Status | EN Status | Validation |
+|---|------|---------|-----------|-----------|------------|
+| 1 | The Inner Sky — Steven Forrest | 入门教程 | 6506字 | 3083 words | 47/47 |
+| 2 | Saturn: A New Look at an Old Devil — Liz Greene | 心理占星 | 8255字 | 4221 words | 47/47 |
+| 3 | Yesterday's Sky — Steven Forrest | 演化占星 | 8191字 | 4348 words | 47/47 |
+| 4 | Cosmos and Psyche — Richard Tarnas | 占星哲学与历史 | 10156字 | 5023 words | 47/47 |
+| 5 | Mythic Astrology — Ariel Guttman & Kenneth Johnson | 神话与原型 | 8961字 | 4352 words | 47/47 |
+
+All 10 files passed validation scripts (47/47 checks each). Common fix applied: English overview blockquote format (3 files needed `>` prefix added).
+
+### Output Files
+
+Chinese:
+- `~/obsidian/占星书/中文/《The Inner Sky》 - Steven Forrest.md`
+- `~/obsidian/占星书/中文/《Saturn A New Look at an Old Devil》 - Liz Greene.md`
+- `~/obsidian/占星书/中文/《Yesterday's Sky》 - Steven Forrest.md`
+- `~/obsidian/占星书/中文/《Cosmos and Psyche》 - Richard Tarnas.md`
+- `~/obsidian/占星书/中文/《Mythic Astrology》 - Ariel Guttman & Kenneth Johnson.md`
+
+English:
+- `~/obsidian/占星书/英文/《The Inner Sky》 - Steven Forrest.md`
+- `~/obsidian/占星书/英文/《Saturn A New Look at an Old Devil》 - Liz Greene.md`
+- `~/obsidian/占星书/英文/《Yesterday's Sky》 - Steven Forrest.md`
+- `~/obsidian/占星书/英文/《Cosmos and Psyche》 - Richard Tarnas.md`
+- `~/obsidian/占星书/英文/《Mythic Astrology》 - Ariel Guttman & Kenneth Johnson.md`
+
+### Remaining Subtypes Not Yet Covered
+
+- 行运与预测 (Transits and Prediction) — suggested next: Robert Hand《Planets in Transit》
+
 ---
 
 ### Task 1: Create directory structure
