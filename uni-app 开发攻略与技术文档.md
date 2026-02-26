@@ -90,7 +90,7 @@ npm run dev:h5              # Web
 npm run dev:mp-weixin       # 微信小程序
 npm run dev:mp-alipay       # 支付宝小程序
 npm run dev:mp-toutiao      # 抖音小程序
-npm run dev:app-plus        # App（部分版本不支持 dev，需用 build）
+# npm run dev:app-plus      # App（官方仅支持 build，不支持 dev）
 
 # 生产构建
 npm run build:h5
@@ -518,7 +518,11 @@ onPullDownRefresh(() => {
 
 ### 6.2 页面跳转与传参
 
+**基础跳转与传参：**
+
 ```js
+import { onLoad } from '@dcloudio/uni-app'
+
 // 跳转并传参
 uni.navigateTo({
   url: '/pages/detail/detail?id=123&name=商品A'
@@ -531,16 +535,21 @@ onLoad((options) => {
 })
 
 // 传递复杂数据（需编码）
-const data = encodeURIComponent(JSON.stringify({ list: [1, 2, 3] }))
+const encoded = encodeURIComponent(JSON.stringify({ list: [1, 2, 3] }))
 uni.navigateTo({
-  url: `/pages/detail/detail?data=${data}`
+  url: `/pages/detail/detail?data=${encoded}`
 })
 
 // 返回上一页
 uni.navigateBack({ delta: 1 })
+```
 
-// 返回并传递数据（方式一：eventChannel，推荐）
-// 在 navigateTo 时建立通道
+**eventChannel 双向通信（推荐）：**
+
+```js
+import { onLoad } from '@dcloudio/uni-app'
+
+// 父页面：在 navigateTo 时建立通道
 uni.navigateTo({
   url: '/pages/detail/detail?id=123',
   events: {
@@ -554,8 +563,12 @@ uni.navigateTo({
     res.eventChannel.emit('sendToDetail', { from: 'parent' })
   }
 })
+```
 
-// 在子页面中接收和回传
+```js
+import { onLoad } from '@dcloudio/uni-app'
+
+// 子页面：接收和回传
 onLoad(() => {
   const pages = getCurrentPages()
   const eventChannel = pages[pages.length - 1].getOpenerEventChannel()
@@ -582,6 +595,8 @@ reLaunch:     [A, B] → [C]      // 清空栈
 ### 6.4 跨页面通信
 
 ```js
+import { onLoad, onUnload } from '@dcloudio/uni-app'
+
 // 页面 A：触发事件
 uni.$emit('updateData', { msg: '来自A的数据' })
 
@@ -593,7 +608,6 @@ onLoad(() => {
 })
 
 // 页面卸载时移除监听（防止内存泄漏）
-import { onUnload } from '@dcloudio/uni-app'
 onUnload(() => {
   uni.$off('updateData')
 })
@@ -701,16 +715,18 @@ uni.request({
   }
 })
 
-// Promise 方式（Vue3）
-try {
-  const res = await uni.request({
-    url: 'https://api.example.com/data',
-    method: 'POST',
-    data: { name: '张三' }
-  })
-  console.log(res.data)
-} catch (err) {
-  console.error(err)
+// Promise 方式（Vue3 + async/await）
+async function fetchData() {
+  try {
+    const res = await uni.request({
+      url: 'https://api.example.com/data',
+      method: 'POST',
+      data: { name: '张三' }
+    })
+    console.log(res.data)
+  } catch (err) {
+    console.error(err)
+  }
 }
 ```
 
@@ -782,10 +798,10 @@ uni.previewImage({
   current: 0
 })
 
-// 上传文件
+// 上传文件（tempFilePaths 来自 chooseImage 的返回值）
 uni.uploadFile({
   url: 'https://api.example.com/upload',
-  filePath: tempFilePath,
+  filePath: tempFiles[0],  // 取选择的第一张图片
   name: 'file',
   formData: { type: 'avatar' },
   success(res) {
@@ -1141,8 +1157,10 @@ export function createApp() {
 #### 数据优化
 
 ```js
-// ❌ 非视图数据不要放在 data 中
-const data = reactive({
+import { ref, reactive } from 'vue'
+
+// ❌ 非视图数据不要放在 reactive 中
+const state = reactive({
   list: [],       // 视图用 ✅
   tempCache: {}   // 非视图用 ❌ — 会触发不必要的渲染
 })
@@ -1181,9 +1199,11 @@ const list = ref([])
 #### 减少通信开销
 
 ```js
-// ❌ 频繁监听滚动
+import { onPageScroll } from '@dcloudio/uni-app'
+
+// ❌ 频繁监听滚动（每次滚动都触发跨层通信）
 onPageScroll((e) => {
-  // 每次滚动都触发通信
+  // 避免在此做大量计算
 })
 
 // ✅ 使用 CSS 动画代替 JS 定时器
@@ -1193,6 +1213,9 @@ onPageScroll((e) => {
 #### 页面初始化优化
 
 ```js
+import { ref } from 'vue'
+import { onReady } from '@dcloudio/uni-app'
+
 // 分批渲染，延迟加载重元素
 const showHeavyContent = ref(false)
 
@@ -1392,6 +1415,7 @@ export const post = (url, data) => request({ url, method: 'POST', data })
 ```js
 // composables/useAuth.js
 import { useUserStore } from '@/store/user'
+import { post } from '@/api'
 
 export function useAuth() {
   const userStore = useUserStore()
@@ -1560,12 +1584,14 @@ npm run build:app-plus       # App
 
 ### 17.3 多环境配置
 
-```js
-// .env.development
+```bash
+# .env.development
 VITE_API_URL=https://dev-api.example.com
 VITE_ENV=development
+```
 
-// .env.production
+```bash
+# .env.production
 VITE_API_URL=https://api.example.com
 VITE_ENV=production
 ```
@@ -1625,6 +1651,7 @@ describe('formatPrice', () => {
 ### 19.2 组件测试
 
 ```js
+import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import MyButton from '@/components/my-button/my-button.vue'
 
@@ -1719,7 +1746,7 @@ jobs:
 
 ### 21.1 隐私合规（App 端必需）
 
-```json
+```jsonc
 // manifest.json — App 隐私弹窗配置
 {
   "app-plus": {
@@ -1807,14 +1834,18 @@ export function trackPageLoad(pageName) {
     markReady() {
       const duration = Date.now() - startTime
       console.log(`[Perf] ${pageName} 加载耗时：${duration}ms`)
-      // 上报到监控平台
-      reportPerformance({ page: pageName, duration })
+      // 上报到监控平台（reportPerformance 为自定义上报函数）
+      // reportPerformance({ page: pageName, duration })
     }
   }
 }
+```
 
+```js
 // 页面中使用
+import { onReady } from '@dcloudio/uni-app'
 import { trackPageLoad } from '@/utils/performance'
+
 const perf = trackPageLoad('detail')
 onReady(() => perf.markReady())
 ```
@@ -1841,14 +1872,15 @@ uni.navigateTo({
 })
 
 // 方案二：事件总线（适合非父子页面通信）
-uni.$emit('setData', complexObj)
+uni.$emit('setData', { key: 'value' })
 
 // 方案三：全局存储（适合持久化数据）
-uni.setStorageSync('tempData', JSON.stringify(data))
+uni.setStorageSync('tempData', JSON.stringify({ key: 'value' }))
 
-// 方案四：Pinia（适合共享状态）
-const store = useSharedStore()
-store.setTempData(data)
+// 方案四：Pinia（适合共享状态，需先定义 store）
+// import { useSharedStore } from '@/store/shared'
+// const store = useSharedStore()
+// store.setTempData(data)
 ```
 
 **场景推荐：** eventChannel 用于页面跳转传参，事件总线用于任意页面通信，Pinia 用于全局状态，Storage 用于需要持久化的数据。
