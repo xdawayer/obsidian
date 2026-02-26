@@ -23,7 +23,7 @@ uni-app 是 DCloud 推出的基于 Vue.js 的跨平台前端应用框架，开�
 
 ### 1.2 核心优势
 
-1. **开发者生态庞大** — 900 万开发者，数百万应用，月活 120 亿
+1. **开发者生态庞大** — 900 万开发者，数百万应用，12 亿月活用户
 2. **跨平台不牺牲性能** — App 端支持原生渲染，小程序端深度优化
 3. **条件编译** — 可针对特定平台编写差异化代码，不丢失平台特有能力
 4. **Vue 语法** — 学习成本低，前端开发者可快速上手
@@ -85,19 +85,21 @@ vue create -p dcloudio/uni-preset-vue my-project
 ### 2.3 运行与发布命令
 
 ```bash
-# 开发模式
-npm run dev:h5          # Web
-npm run dev:mp-weixin   # 微信小程序
-npm run dev:mp-alipay   # 支付宝小程序
-npm run dev:mp-toutiao  # 抖音小程序
-npm run dev:app         # App
+# 开发模式（热更新）
+npm run dev:h5              # Web
+npm run dev:mp-weixin       # 微信小程序
+npm run dev:mp-alipay       # 支付宝小程序
+npm run dev:mp-toutiao      # 抖音小程序
+npm run dev:app-plus        # App（部分版本不支持 dev，需用 build）
 
 # 生产构建
 npm run build:h5
 npm run build:mp-weixin
 npm run build:mp-alipay
-npm run build:app
+npm run build:app-plus      # App 端构建
 ```
+
+> **注意：** App 端平台标识为 `app-plus`，部分 CLI 版本仅支持 `build` 不支持 `dev`。具体以项目 `package.json` 中的 scripts 定义为准。
 
 ---
 
@@ -151,6 +153,12 @@ npm run build:app
       "style": {
         "navigationBarTitleText": "首页",
         "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/mine/mine",
+      "style": {
+        "navigationBarTitleText": "我的"
       }
     },
     {
@@ -528,9 +536,33 @@ uni.navigateTo({
   url: `/pages/detail/detail?data=${data}`
 })
 
-// 返回上一页并传递数据
-uni.navigateBack({
-  delta: 1
+// 返回上一页
+uni.navigateBack({ delta: 1 })
+
+// 返回并传递数据（方式一：eventChannel，推荐）
+// 在 navigateTo 时建立通道
+uni.navigateTo({
+  url: '/pages/detail/detail?id=123',
+  events: {
+    // 监听子页面触发的事件
+    acceptDataFromDetail(data) {
+      console.log('收到子页面数据：', data)
+    }
+  },
+  success(res) {
+    // 向子页面传递数据
+    res.eventChannel.emit('sendToDetail', { from: 'parent' })
+  }
+})
+
+// 在子页面中接收和回传
+onLoad(() => {
+  const eventChannel = getCurrentPages().pop().getOpenerEventChannel()
+  eventChannel.on('sendToDetail', (data) => {
+    console.log('收到父页面数据：', data)
+  })
+  // 回传数据给父页面
+  eventChannel.emit('acceptDataFromDetail', { result: '处理完成' })
 })
 ```
 
@@ -865,6 +897,9 @@ uni.chooseLocation({
 | `MP-TOUTIAO` | 抖音小程序 |
 | `MP-BAIDU` | 百度小程序 |
 | `MP` | 所有小程序 |
+| `MP-QQ` | QQ 小程序 |
+| `MP-KUAISHOU` | 快手小程序 |
+| `APP-HARMONY` | HarmonyOS App |
 | `VUE3` | 使用 Vue3 时 |
 
 ### 9.3 使用示例
@@ -957,8 +992,8 @@ static/
 | `rpx` | 响应式像素，750rpx = 屏幕宽度（推荐） |
 | `px` | 固定像素 |
 | `%` | 百分比 |
-| `vh/vw` | 视口单位（仅 H5） |
-| `rem` | 相对根元素字体大小（仅 H5） |
+| `vh/vw` | 视口单位（H5 完整支持，小程序部分支持，nvue 不支持） |
+| `rem` | 相对根元素字体大小（H5 完整支持，小程序部分支持，nvue 不支持） |
 
 **rpx 换算规则：** 设计稿宽度 750px 时，1px = 1rpx。设计稿宽度 375px 时，1px = 2rpx。
 
@@ -1129,7 +1164,7 @@ export function createApp() {
 
 ### 12.1 架构原理
 
-非 H5 端采用**逻辑层与渲染层分离**架构。逻辑层在独立的 jscore 引擎中运行 JS，渲染层负责界面绘制。两层通过消息通信，Android 上单次通信耗时可达数十毫秒。
+非 H5 端采用**逻辑层与渲染层分离**架构。逻辑层在独立的 jscore 引擎中运行 JS，渲染层负责界面绘制。两层通过消息通信，跨层通信存在一定耗时（具体取决于设备性能和数据量大小，可通过 performance 面板实测）。
 
 ### 12.2 核心优化策略
 
@@ -1207,7 +1242,7 @@ onReady(() => {
 
 #### 包体积优化
 
-- 开启 tree-shaking，H5 gzip 后约 162KB
+- 开启 tree-shaking 减小包体积（H5 gzip 后体积视项目复杂度而定，需实测）
 - 图片资源使用 CDN，不放入 static
 - 合理使用分包和分包预加载
 - 移除未使用的组件和插件
@@ -1338,9 +1373,6 @@ src/
 ```js
 // api/index.js
 const BASE_URL = import.meta.env.VITE_API_URL || 'https://api.example.com'
-
-let isRefreshing = false
-let requestQueue = []
 
 export function request(options) {
   return new Promise((resolve, reject) => {
@@ -1543,7 +1575,7 @@ export default {
 # 1. 构建生产版本
 npm run build:mp-weixin     # 微信小程序
 npm run build:h5             # Web
-npm run build:app            # App
+npm run build:app-plus       # App
 
 # 2. 各平台发布
 # 微信小程序 → 微信开发者工具上传
@@ -1570,21 +1602,269 @@ const apiUrl = import.meta.env.VITE_API_URL
 
 ---
 
-## 十八、常见问题与解决方案
+## 十八、版本与兼容性矩阵
+
+### 18.1 框架版本选择
+
+| 维度 | Vue2 版本 | Vue3 版本 | uni-app x |
+|------|----------|----------|-----------|
+| 编译器 | webpack | Vite | Vite |
+| 语言 | JS | JS / TS | UTS (TypeScript 超集) |
+| 响应式 | Object.defineProperty | Proxy | Proxy |
+| 浏览器兼容 | 支持 IE11、iOS9 | 不支持 IE11、iOS < 10 | 仅原生端 |
+| 维护状态 | 维护期 | 主力版本 | 新一代（持续演进） |
+| HarmonyOS | 不支持 | 部分支持 | 支持 |
+
+**建议：** 新项目优先选择 **Vue3 + TypeScript** 组合，获得更好的开发体验和性能。
+
+### 18.2 Node.js 版本要求
+
+| 项目类型 | Node.js 要求 |
+|---------|------------|
+| Vue3 / Vite 项目 | 18+ 或 20+ |
+| Vue2 / webpack 项目 | 12+ |
+
+---
+
+## 十九、测试策略
+
+### 19.1 单元测试
+
+```bash
+npm install -D vitest @vue/test-utils
+```
+
+```js
+// tests/utils.test.js
+import { describe, it, expect } from 'vitest'
+import { formatPrice } from '@/utils/format'
+
+describe('formatPrice', () => {
+  it('格式化价格为两位小数', () => {
+    expect(formatPrice(100)).toBe('100.00')
+    expect(formatPrice(9.9)).toBe('9.90')
+  })
+})
+```
+
+### 19.2 组件测试
+
+```js
+import { mount } from '@vue/test-utils'
+import MyButton from '@/components/my-button/my-button.vue'
+
+it('按钮点击触发事件', async () => {
+  const wrapper = mount(MyButton, { props: { label: '提交' } })
+  await wrapper.trigger('click')
+  expect(wrapper.emitted('click')).toBeTruthy()
+})
+```
+
+### 19.3 多端测试清单
+
+| 平台 | 测试重点 |
+|------|---------|
+| H5 | 响应式布局、浏览器兼容性、路由模式 |
+| 微信小程序 | 授权流程、分享功能、包体积 |
+| App (Android) | 权限弹窗、返回键、推送、性能 |
+| App (iOS) | 安全区域、相册权限、审核合规 |
+
+> **建议：** 每次发版前至少在真机上测试核心流程，模拟器无法覆盖所有边界场景。
+
+---
+
+## 二十、CI/CD 与自动化发布
+
+### 20.1 多端构建脚本
+
+```json
+// package.json
+{
+  "scripts": {
+    "build:all": "npm run build:h5 && npm run build:mp-weixin && npm run build:app-plus",
+    "build:h5": "uni build -p h5",
+    "build:mp-weixin": "uni build -p mp-weixin",
+    "build:app-plus": "uni build -p app-plus",
+    "lint": "eslint src --ext .vue,.js,.ts",
+    "test": "vitest run"
+  }
+}
+```
+
+### 20.2 GitHub Actions 示例
+
+```yaml
+# .github/workflows/build.yml
+name: Build & Deploy
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-h5:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run test
+      - run: npm run build:h5
+      - name: Deploy to server
+        run: |
+          # 将 dist/build/h5 部署到服务器
+          echo "Deploy H5 build artifacts"
+
+  build-mp-weixin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npm run build:mp-weixin
+      # 使用 miniprogram-ci 上传小程序
+      - run: npx miniprogram-ci upload --pp dist/build/mp-weixin --pkp ./private.key --appid ${{ secrets.WX_APPID }} -r ${{ github.run_number }} --uv 1.0.0
+```
+
+### 20.3 App 发布签名
+
+| 平台 | 签名要求 |
+|------|---------|
+| Android | 需要 keystore 签名证书，通过 HBuilderX 或 Android Studio 签名打包 |
+| iOS | 需要 Apple Developer 证书 + Provisioning Profile，通过 Xcode 或 HBuilderX 云打包 |
+| HarmonyOS | 需要华为开发者证书，通过 DevEco Studio 签名 |
+
+---
+
+## 二十一、安全与合规
+
+### 21.1 隐私合规（App 端必需）
+
+```json
+// manifest.json — App 隐私弹窗配置
+{
+  "app-plus": {
+    "privacy": {
+      "prompt": "template",
+      "template": {
+        "title": "隐私政策",
+        "message": "请仔细阅读<a href=\"https://example.com/privacy\">隐私政策</a>，同意后继续使用。",
+        "buttonAccept": "同意",
+        "buttonRefuse": "不同意"
+      }
+    }
+  }
+}
+```
+
+### 21.2 安全最佳实践
+
+1. **最小权限原则** — 仅申请必需权限，不过度获取用户信息
+2. **数据加密** — 敏感数据（token、密码等）加密存储，HTTPS 传输
+3. **输入校验** — 前端校验 + 后端校验双重保障，防止注入攻击
+4. **Token 管理** — 设置合理过期时间，支持 refresh token 无感续期
+5. **代码混淆** — App 端开启代码混淆，小程序端启用代码加密
+
+### 21.3 各平台审核要点
+
+| 平台 | 审核重点 |
+|------|---------|
+| 微信小程序 | 类目资质、隐私接口授权、内容安全 |
+| App Store | 隐私标签、IDFA 说明、内购合规 |
+| Google Play | 隐私政策、权限说明、目标 API 等级 |
+| 华为应用市场 | 隐私声明、权限管理、安全检测 |
+
+---
+
+## 二十二、监控与错误上报
+
+### 22.1 全局错误捕获
+
+```js
+// App.vue
+export default {
+  onError(err) {
+    // 上报错误到监控平台
+    reportError({
+      type: 'js_error',
+      message: err,
+      page: getCurrentPages().pop()?.route,
+      time: Date.now()
+    })
+  },
+  onLaunch() {
+    // 监听未处理的 Promise 拒绝
+    uni.onUnhandledRejection((event) => {
+      reportError({
+        type: 'unhandled_rejection',
+        message: event.reason,
+        time: Date.now()
+      })
+    })
+  }
+}
+```
+
+### 22.2 性能监控
+
+```js
+// utils/performance.js
+export function trackPageLoad(pageName) {
+  const startTime = Date.now()
+
+  return {
+    markReady() {
+      const duration = Date.now() - startTime
+      console.log(`[Perf] ${pageName} 加载耗时：${duration}ms`)
+      // 上报到监控平台
+      reportPerformance({ page: pageName, duration })
+    }
+  }
+}
+
+// 页面中使用
+import { trackPageLoad } from '@/utils/performance'
+const perf = trackPageLoad('detail')
+onReady(() => perf.markReady())
+```
+
+### 22.3 常见监控平台
+
+- **Sentry** — 开源错误监控，支持 JS/小程序
+- **fundebug** — 国内前端监控服务
+- **uni 统计** — DCloud 官方统计服务，在 manifest.json 中开启
+
+---
+
+## 二十三、常见问题与解决方案
 
 ### Q1: 页面间传递复杂数据
 
 ```js
-// 方案一：事件总线
+// 方案一：eventChannel（推荐，navigateTo 时使用）
+uni.navigateTo({
+  url: '/pages/target/target',
+  success(res) {
+    res.eventChannel.emit('sendData', { list: [1, 2, 3], obj: { a: 1 } })
+  }
+})
+
+// 方案二：事件总线（适合非父子页面通信）
 uni.$emit('setData', complexObj)
 
-// 方案二：全局存储
+// 方案三：全局存储（适合持久化数据）
 uni.setStorageSync('tempData', JSON.stringify(data))
 
-// 方案三：Pinia
+// 方案四：Pinia（适合共享状态）
 const store = useSharedStore()
 store.setTempData(data)
 ```
+
+**场景推荐：** eventChannel 用于页面跳转传参，事件总线用于任意页面通信，Pinia 用于全局状态，Storage 用于需要持久化的数据。
 
 ### Q2: 小程序包体积超限
 
@@ -1625,7 +1905,7 @@ const visibleList = computed(() => list.value.filter(item => item.visible))
 
 ---
 
-## 十九、推荐资源
+## 二十四、推荐资源
 
 | 资源 | 地址 |
 |------|------|
