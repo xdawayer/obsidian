@@ -73,8 +73,10 @@ Airwallex 收单产品支持以多种方式接受在线支付：
 | 文档内容 | 地址 |
 |---------|------|
 | API 文档 | https://www.airwallex.com/docs/api#/Introduction |
-| 支付组件 GitHub | https://github.com/airwallex/airwallex-payment-demo |
+| 支付组件 GitHub（CDN 集成） | https://github.com/airwallex/airwallex-payment-demo/tree/master/integrations/cdn |
+| 支付组件 SDK 加载文档 | https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#loadairwallex |
 | 前端代码示例 | https://www.airwallex.com/docs/js/ |
+| 支付方式列表和详情 | https://www.airwallex.com/docs/payments__payment-methods-overview |
 | 收单官方文档 | https://www.airwallex.com/docs/online-payments__starting-with-payments |
 | 测试卡 | https://www.airwallex.com/docs/payments__test-card-numbers |
 | Webhook 订阅 | https://www.airwallex.com/docs/developer-tools__listen-for-webhook-events |
@@ -415,7 +417,26 @@ POST https://api-demo.airwallex.com/api/v1/pa/customers/create
 }
 ```
 
-Response 返回 `customer_id`（如 `cus_bLYpNNnC60FhaHe8tdmqi1D5NKx`），后续接口传参使用。
+Response 返回 `customer_id`（如 `cus_bLYpNNnC60FhaHe8tdmqi1D5NKx`）和 `client_secret`，后续接口传参使用。
+
+#### Step 1.5（仅绑卡模式）: 获取 Customer Client Secret
+
+如果是**仅绑卡**场景（不创建 Payment Intent），需调用此接口获取 customer 的 `client_secret`：
+
+```
+GET https://api-demo.airwallex.com/api/v1/pa/customers/{customer_id}/generate_client_secret
+```
+
+**Response 示例：**
+
+```json
+{
+  "client_secret": "eyJhbGciOiJIUzI1NiJ9...",
+  "expired_time": "2021-04-09T04:18:43+0000"
+}
+```
+
+> 此 `client_secret` 用于前端仅绑卡流程，替代 intent 的 `client_secret`。
 
 #### Step 2: 创建 Payment Intent（带 customer_id）
 
@@ -438,16 +459,29 @@ POST https://api-demo.airwallex.com/api/v1/pa/payment_intents/create
 
 ### 5.5 CIT 模式对接
 
-**首次绑卡并支付：**
+**首次绑卡并支付（HPP/Drop-in）：**
 1. 后端创建 Customer → 获取 `customer_id`
 2. 后端创建 Payment Intent → 传入 `customer_id`
 3. 前端传入 `intent_id`、`client_secret`、`customer_id`，支付页面会自动出现**保存卡选项**
-4. 通过 Webhook 订阅支付结果
+4. 支付完成后，通过前端监听事件 / Webhook 订阅 `payment_consent.verified` 事件 / Get list of PaymentConsents 接口获取 `consent_id`
+5. 通过 Webhook 订阅支付结果
 
-**后续支付：**
+**首次绑卡并支付（字段嵌入）：**
+1. 后端创建 Customer → 获取 `customer_id`
+2. 后端创建 Payment Intent → 传入 `customer_id`
+3. 前端集成 card/split-card 的 `createPaymentConsent` 组件，传入 `intent_id`、`client_secret`、`customer_id`，将 `next_triggered_by` 设置为 `customer`
+4. 获取 `consent_id` 用于后续支付
+
+**后续支付（HPP/Drop-in）：**
 1. 后端创建 Payment Intent → 传入 `customer_id`
 2. 前端传入 `intent_id`、`client_secret`、`customer_id`
 3. 客户输入 CVC 后完成支付
+
+**后续支付（字段嵌入）：**
+1. 后端创建 Payment Intent → 传入 `customer_id`
+2. 前端集成 card/split-card 的 confirm 组件和 CVC 输入框，传入 `intent_id`、`client_secret`、`consent_id`
+3. 商户需管理好 `consent_id` 和 `customer_id` 的映射关系，以便用户在支付页面选择对应卡号
+4. 客户输入 CVC 后完成支付
 
 ### 5.6 MIT 模式对接
 
@@ -473,6 +507,8 @@ payments.redirectToCheckout({
   },
 });
 ```
+
+> **注意：** HPP 模式的 `recurringOptions` 需要按支付方式分组（如 `recurringOptions.card`），而 Drop-in 模式直接在顶层设置 `recurringOptions.next_triggered_by`。
 
 **Drop-in 模式示例：**
 
@@ -511,6 +547,8 @@ document.getElementById('submit').addEventListener('click', () => {
 > **绑卡模式说明：**
 > - 传入 `intent_id` → 使用 intent 的 `client_secret` → **绑卡并支付**
 > - 不传 `intent_id` → 使用 customer 的 `client_secret` → **仅绑卡**
+>
+> **注意：** 字段嵌入模式的循环扣款在正式环境中使用 `https://pci-api.airwallex.com` 域名（而非 `api.airwallex.com`），测试环境使用 `https://api-demo.airwallex.com`。
 
 **获取 consent_id 的三种方式：**
 1. 前端监听事件
@@ -547,8 +585,8 @@ POST https://api-demo.airwallex.com/api/v1/pa/payment_intents/{id}/confirm
 
 ### 6.2 Google Pay 对接
 
-1. 在 webapp 后台激活 Google Pay
-2. 注意：国内 IP 不支持 Google Pay，测试需使用 VPN
+1. 在 webapp 后台激活 Google Pay（激活文档：https://www.airwallex.com/docs/payments__global__google-paytm__enable-google-paytm ）
+2. 注意：国内 IP 不支持 Google Pay，测试需使用 VPN；Google Pay 不支持在 WebView 场景下使用
 3. 前端配置 `googlePayRequestOptions`：
 
 ```javascript
@@ -571,8 +609,8 @@ googlePayRequestOptions: {
 
 ### 6.3 Apple Pay 对接
 
-1. 在 webapp 后台激活 Apple Pay
-2. **添加域名要求：**
+1. 在 webapp 后台激活 Apple Pay（激活文档：https://www.airwallex.com/docs/payments__global__apple-pay__enable-apple-pay-via-web-application__apple-pay-for-web ）
+2. **在 webapp 上添加域名要求：**
    - 与开通支付方式时登记的域名一致
    - 需公网可访问
    - 需 HTTPS 协议
@@ -589,7 +627,58 @@ applePayRequestOptions: {
 }
 ```
 
-**测试说明：** Apple Pay 仅可在 Safari 浏览器中展示和测试，需使用已开通 Apple Pay 的真实 Apple 账号。
+**测试说明：** Apple Pay 仅可在 Safari 浏览器中展示和测试，需使用已开通 Apple Pay 的真实 Apple 账号（测试环境不会实际扣款）。请核查测试用户所属的国家/地区是否支持 Apple Pay。
+
+### 6.4 HPP / Drop-in 钱包参数完整示例
+
+**HPP 模式：**
+
+```javascript
+payments.redirectToCheckout({
+  intent_id: intent.id,
+  client_secret: intent.client_secret,
+  currency: 'intent.currency',
+  applePayRequestOptions: {
+    buttonType: 'buy',
+    buttonColor: 'white-with-line',
+    countryCode: 'HK',
+    totalPriceLabel: 'COMPANY, INC.'
+  },
+  googlePayRequestOptions: {
+    countryCode: 'HK',
+    merchantInfo: { merchantName: 'Example Merchant' },
+    emailRequired: true,
+    billingAddressRequired: true,
+    buttonType: 'book',
+    buttonColor: 'black',
+    buttonSizeMode: 'fill'
+  }
+});
+```
+
+文档链接：https://www.airwallex.com/docs/payments__global__google-paytm__hosted-payment-page
+
+**Drop-in 模式：**
+
+```javascript
+const dropInElement = createElement('dropIn', {
+  intent_id: intent.id,
+  client_secret: intent.client_secret,
+  currency: 'intent.currency',
+  applePayRequestOptions: {
+    countryCode: 'US',
+    buttonType: 'buy',
+    buttonColor: 'white-with-line',
+  },
+  googlePayRequestOptions: {
+    countryCode: 'US',
+    merchantInfo: { merchantName: 'Example Merchant' },
+    buttonType: 'buy',
+  }
+});
+```
+
+文档链接：https://www.airwallex.com/docs/payments__global__apple-pay__drop-in-element
 
 ---
 
@@ -635,6 +724,7 @@ POST https://api-demo.airwallex.com/api/v1/pa/refunds/create
 
 - 退款沿支付路径**原路退回**
 - 支持**部分退款**和**多次退款**，总额不得超过原消费金额
+- 对于卡支付，退款的执行时间周期（结算周期）**与消费交易的请款一致**
 - 退款需满足资金要求：
   1. 待结算资金 > 退款金额，或
   2. 交易币种钱包余额 > 退款金额，或
@@ -698,6 +788,7 @@ POST https://api-demo.airwallex.com/api/v1/pa/refunds/create
       "state": "Shanghai",
       "street": "Pudong District"
     },
+    "business_name": "Abc Trading Limited",
     "email": "john.doe@airwallex.com",
     "first_name": "John",
     "last_name": "Doe",
@@ -738,7 +829,32 @@ POST https://api-demo.airwallex.com/api/v1/pa/refunds/create
 
 > **字段优先级：** 红色 = 必传 | 紫色 = 建议传输 | 黄色 = 可选
 >
-> **注意：** 非直连模式（HPP/Drop-in）下，billing 字段需在前端 JS 中完成传递。
+> **注意：** 非直连模式（HPP/Drop-in）下，billing 字段需在前端 JS 中完成传递（通过 `withBilling: true` 和 `requiredBillingContactFields` 参数）。字段嵌入模式下，billing 信息需在 `confirmPaymentIntent` 调用中通过 `payment_method.billing` 对象传入：
+
+```javascript
+Airwallex.confirmPaymentIntent({
+  element: Airwallex.getElement('cardNumber'),
+  intent_id: 'your-intentid',
+  client_secret: 'your-client-secret',
+  currency: 'your-currency',
+  payment_method: {
+    billing: {
+      email: 'xxx@test.com',
+      first_name: 'Test',
+      last_name: 'Test',
+      date_of_birth: '1990-01-01',
+      phone_number: '13999999999',
+      address: {
+        city: 'Shanghai',
+        country_code: 'CN',
+        postcode: '201000',
+        state: 'Shanghai',
+        street: 'test road'
+      }
+    }
+  }
+});
+```
 
 ---
 
@@ -777,30 +893,53 @@ POST https://api-demo.airwallex.com/api/v1/pa/refunds/create
 
 ### 11.2 支付失败错误码与建议话术
 
+#### 非发卡行错误
+
 | code | 原因 | 建议话术 |
 |------|------|---------|
-| `validation_error` | 卡号无效 | 卡号或账户无效，请核实所有信息无误后重试 |
+| `validation_error` (invalid pan) | 卡号无效 | 卡号或账户无效，请核实所有信息无误后重试 |
 | `card_brand_not_supported` | 卡品牌不支持 | 卡号或账户无效，请核实所有信息无误后重试 |
-| `risk_declined` | 风控拒绝 | 支付失败，请尝试使用其他银行卡或其他支付方式 |
+| `risk_declined` | Airwallex 风控拒绝 | 支付失败，请尝试使用其他银行卡或其他支付方式 |
 | `authentication_decline` | 3DS 认证失败 | 交易认证失败，请检查支付信息后重试，或选择其他支付方式 |
-| `issuer_declined` (51/61) | 余额不足 | 余额不足或超出信用额度，请使用其他银行卡重试 |
-| `issuer_declined` (82) | CVV 错误 | CVC/CVC2 无效，请检查后重试 |
-| `issuer_declined` (54) | 卡过期 | 银行卡已过期，请检查后重试或使用其他银行卡 |
-| `issuer_declined` (05/57) | 发卡行拒绝 | 发卡行拒绝了本次交易，请尝试其他银行卡 |
-| `issuer_declined` (91) | 临时错误 | 授权过程中发生临时错误，请重试 |
-| `issuer_declined` (41/07) | 欺诈卡/受限卡 | 信用卡存在限制，请使用其他银行卡重试 |
-| `issuer_declined` (78) | 未激活卡 | 该银行卡未激活，请激活后再试 |
+
+#### 发卡行错误 (`issuer_declined`)
+
+| provider_original_response_code | 原因 | 建议话术 |
+|--------------------------------|------|---------|
+| 12, 06 | 未知错误/没有响应 | 无法确认卡信息。请尝试使用其他银行卡或支付方式。如持续出现，请提供错误截图和订单号进一步核查。 |
+| 51, 61 | 余额不足/超过消费限制 | 余额不足或超出信用额度，请使用其他银行卡或其他支付方式重试。 |
+| 82 | CVV 安全验证码错误 | CVC/CVC2（安全码）无效，请检查后重试。 |
+| 54 | 卡过期 | 银行卡已过期或您输入的有效期不正确。请检查后重试或尝试使用其他银行卡。 |
+| 63, 93, 05, 57 | 通用发卡行拒绝/未授权 | 发卡行拒绝了本次交易。请尝试其他银行卡或使用其他支付方式。如需确认，请联系发卡行。 |
+| 14, 15 | 卡号无效 | 卡号或账户无效，请核实所有信息无误后重试。 |
+| 91 | 发生临时错误 | 授权过程中发生临时错误，请重试。如持续出现，请联系发卡行。 |
+| 41, 07 | 欺诈卡/受限卡 | 信用卡存在一些限制，发卡行已拒绝本次交易。请使用其他银行卡重试。如需确认，请联系发卡行。 |
+| 59 | 银行风控导致交易失败 | 无法确认卡信息。请尝试使用其他银行卡或支付方式。如需帮助，请联系发卡行。 |
+| 79 | 请稍后重试 | 无法确认卡信息。请使用其他银行卡或其他支付方式重试。 |
+| 78 | 未激活卡 | 该银行卡未激活，请激活后再试。 |
+| 13 | 无效金额 (invalid amount) | 无法处理付款。请检查您的支付信息后重试，或选择其他支付方式。 |
+
+#### 卡交易失败的分类提示
+
+当消费者支付失败时，依据 `provider_original_response_code` 分为两类：
+
+| 分类 | 对应码 | 处理方式 |
+|-----|--------|---------|
+| **输入信息有误，可修正** | 14, 15, 30（卡号错误）；82, 89, N7（CVV 错误）；51, 61（余额不足） | 提示消费者修正信息后重试 |
+| **不可修正** | 其他所有 code | 提示消费者换卡重试 |
 
 ### 11.3 上线检查清单
 
-| 检查项目 | 说明 |
-|---------|------|
-| Webhook: Payment Intent Succeeded | 确保订阅了支付成功事件 |
-| Webhook: Authorization Failed | 确保订阅了授权失败事件 |
-| Webhook: Authentication Failed | 确保订阅了验证失败事件 |
-| API: Retrieve Payment Intent | 确保调用了查询支付状态的接口 |
-| Webhook: Refund Received/Succeeded/Failed | 确保订阅了退款相关事件 |
-| Notify URL | 确保使用生产环境 URL，且为 HTTPS |
+| 检查项目 | 说明 | 责任方 |
+|---------|------|--------|
+| Webhook: Payment Intent Succeeded | 确保订阅了支付成功事件 | 商户 + AWX |
+| Webhook: Authorization Failed | 确保订阅了授权失败事件 | 商户 + AWX |
+| Webhook: Authentication Failed | 确保订阅了验证失败事件 | 商户 + AWX |
+| API: Retrieve Payment Intent | 确保调用了查询支付状态的接口 | 商户 + AWX |
+| Webhook: Refund Received | 确保订阅了创建退款事件 | 商户 + AWX |
+| Webhook: Refund Succeeded | 确保订阅了退款成功事件 | 商户 + AWX |
+| Webhook: Refund Failed | 确保订阅了退款失败事件 | 商户 + AWX |
+| Notify URL | 确保使用生产环境 URL，且为 HTTPS | 商户 |
 
 ### 11.4 上线步骤
 
@@ -867,6 +1006,8 @@ POST https://api-demo.airwallex.com/api/v1/pa/refunds/create
 
 ### 12.5 PCI DSS 合规
 
+PCI DSS 是面向所有存储、处理或传输持卡人数据和/或敏感验证数据的所有实体的全球性安全标准。根据支付集成方式可选择不同的 SAQ 类别，**是上线前必须提供的文件**：
+
 | 对接方式 | 证书要求 |
 |---------|---------|
 | 托管页面模式 | SAQ-A 文件 |
@@ -880,7 +1021,7 @@ POST https://api-demo.airwallex.com/api/v1/pa/refunds/create
 |-----|------|
 | `code` | 失败类型 |
 | `message` | 错误提示消息 |
-| `provider_original_response_code` | 授权失败时的发卡行原始响应码 |
+| `provider_original_response_code` | 当 code 为 `provider_declined` 或 `issuer_declined` 时，说明授权失败的原因 |
 | `source` | 请求中存在问题的字段 |
 
 **文档地址：**
