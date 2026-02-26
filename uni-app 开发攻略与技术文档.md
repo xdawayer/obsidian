@@ -334,18 +334,18 @@ function handleClick() {
 ```js
 import { ref, reactive, toRefs } from 'vue'
 
-// ref — 基础类型
-const name = ref('张三')
-const age = ref(25)
+// ref — 适合基础类型
+const count = ref(0)
+const message = ref('Hello')
 
-// reactive — 对象类型
+// reactive — 适合对象类型
 const userInfo = reactive({
   name: '张三',
   age: 25,
   address: { city: '北京' }
 })
 
-// 解构时保持响应式
+// 解构 reactive 时用 toRefs 保持响应式
 const { name, age } = toRefs(userInfo)
 ```
 
@@ -557,7 +557,8 @@ uni.navigateTo({
 
 // 在子页面中接收和回传
 onLoad(() => {
-  const eventChannel = getCurrentPages().pop().getOpenerEventChannel()
+  const pages = getCurrentPages()
+  const eventChannel = pages[pages.length - 1].getOpenerEventChannel()
   eventChannel.on('sendToDetail', (data) => {
     console.log('收到父页面数据：', data)
   })
@@ -592,6 +593,7 @@ onLoad(() => {
 })
 
 // 页面卸载时移除监听（防止内存泄漏）
+import { onUnload } from '@dcloudio/uni-app'
 onUnload(() => {
   uni.$off('updateData')
 })
@@ -712,39 +714,7 @@ try {
 }
 ```
 
-**封装建议：**
-
-```js
-// utils/request.js
-const BASE_URL = 'https://api.example.com'
-
-export function request(options) {
-  return new Promise((resolve, reject) => {
-    uni.request({
-      url: BASE_URL + options.url,
-      method: options.method || 'GET',
-      data: options.data,
-      header: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${uni.getStorageSync('token')}`,
-        ...options.header
-      },
-      success(res) {
-        if (res.statusCode === 200) {
-          resolve(res.data)
-        } else if (res.statusCode === 401) {
-          uni.navigateTo({ url: '/pages/login/login' })
-          reject(res)
-        } else {
-          uni.showToast({ title: '请求失败', icon: 'none' })
-          reject(res)
-        }
-      },
-      fail: reject
-    })
-  })
-}
-```
+> **封装建议：** 实际项目中建议统一封装请求函数，处理 token 注入、错误码拦截、loading 展示等逻辑。完整封装示例见 [第十五章 15.2 请求拦截器模式](#152-请求拦截器模式)。
 
 ### 8.2 数据缓存
 
@@ -1008,12 +978,12 @@ static/
   justify-content: space-between;
 }
 
-/* 垂直居中 */
+/* 垂直居中（注意：100vh 在小程序/nvue 端兼容性有限，可改用 100%） */
 .center {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 100%;
 }
 
 /* 自适应布局 */
@@ -1438,10 +1408,15 @@ export function useAuth() {
   // 微信登录
   async function wxLogin() {
     // #ifdef MP-WEIXIN
-    const { code } = await uni.login({ provider: 'weixin' })
-    const res = await post('/auth/wx-login', { code })
-    userStore.setToken(res.token)
-    userStore.setUserInfo(res.userInfo)
+    try {
+      const loginRes = await uni.login({ provider: 'weixin' })
+      const res = await post('/auth/wx-login', { code: loginRes.code })
+      userStore.setToken(res.token)
+      userStore.setUserInfo(res.userInfo)
+    } catch (err) {
+      uni.showToast({ title: '登录失败', icon: 'none' })
+      console.error('微信登录失败：', err)
+    }
     // #endif
   }
 
@@ -1677,8 +1652,8 @@ it('按钮点击触发事件', async () => {
 
 ### 20.1 多端构建脚本
 
-```json
-// package.json
+```js
+// package.json scripts 部分
 {
   "scripts": {
     "build:all": "npm run build:h5 && npm run build:mp-weixin && npm run build:app-plus",
@@ -1798,13 +1773,25 @@ export default {
   },
   onLaunch() {
     // 监听未处理的 Promise 拒绝
-    uni.onUnhandledRejection((event) => {
+    // #ifdef MP-WEIXIN || APP-PLUS
+    uni.onUnhandledRejection?.((event) => {
       reportError({
         type: 'unhandled_rejection',
         message: event.reason,
         time: Date.now()
       })
     })
+    // #endif
+
+    // #ifdef H5
+    window.addEventListener('unhandledrejection', (event) => {
+      reportError({
+        type: 'unhandled_rejection',
+        message: event.reason?.message || String(event.reason),
+        time: Date.now()
+      })
+    })
+    // #endif
   }
 }
 ```
