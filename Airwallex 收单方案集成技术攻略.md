@@ -235,7 +235,12 @@ payments.redirectToCheckout({
 });
 ```
 
-> **语言设置：** 默认根据浏览器语言显示，不支持的语言默认英文。
+> **语言设置：** 默认根据浏览器语言显示，不支持的语言默认英文。参考文档：https://www.airwallex.com/docs/js/
+
+**参考文档链接：**
+- GitHub 示例：https://github.com/airwallex/airwallex-payment-demo/blob/master/integrations/cdn/hpp.html
+- CDN 集成示例：https://github.com/airwallex/airwallex-payment-demo/tree/master/integrations/cdn
+- 官方文档：https://www.airwallex.com/docs/js/payments/hosted-payment-page/
 
 ---
 
@@ -310,6 +315,12 @@ const dropIn = await window.AirwallexComponentsSDK.createElement('dropIn', {
   methods: ['card', 'googlepay', 'applepay']  // 控制展示和排序支付方式
 });
 ```
+
+**参考文档链接：**
+- GitHub 示例：https://github.com/airwallex/airwallex-payment-demo/blob/master/integrations/cdn/dropin.html
+- CDN 集成示例：https://github.com/airwallex/airwallex-payment-demo/tree/master/integrations/cdn
+- 官方文档：https://www.airwallex.com/docs/js/payments/dropin/
+- 游客结账：https://www.airwallex.com/docs/payments__drop-in-element__guest-user-checkout
 
 ---
 
@@ -464,7 +475,7 @@ POST https://api-demo.airwallex.com/api/v1/pa/payment_intents/create
 2. 后端创建 Payment Intent → 传入 `customer_id`
 3. 前端传入 `intent_id`、`client_secret`、`customer_id`，支付页面会自动出现**保存卡选项**
 4. 支付完成后，通过前端监听事件 / Webhook 订阅 `payment_consent.verified` 事件 / Get list of PaymentConsents 接口获取 `consent_id`
-5. 通过 Webhook 订阅支付结果
+5. 通过 Webhook 订阅支付结果（如 success、fail），或通过 Retrieve a PaymentIntent 接口查询订单状态，形成闭环
 
 **首次绑卡并支付（字段嵌入）：**
 1. 后端创建 Customer → 获取 `customer_id`
@@ -489,6 +500,14 @@ POST https://api-demo.airwallex.com/api/v1/pa/payment_intents/create
 1. 后端创建 Customer → 获取 `customer_id`
 2. 后端创建 Payment Intent → 传入 `customer_id`
 3. 前端设置 `mode: 'recurring'`，并配置 `recurringOptions`
+4. 支付完成后，通过前端监听事件 / Webhook 订阅 `payment_consent.verified` / Get list of PaymentConsents 获取 `consent_id`
+5. 通过 Webhook 或 Retrieve a PaymentIntent 接口确认支付结果，形成闭环
+
+**仅绑卡（不创建 Payment Intent）：**
+1. 后端创建 Customer → 获取 `customer_id` 和 `client_secret`
+2. 前端传入 customer 的 `client_secret`（**不传** `intent_id`），设置 `mode: 'recurring'`，配置 `recurringOptions`
+3. 客户完成绑卡后，获取 `consent_id` 用于后续支付
+4. 后续扣款流程同下方「MIT 后续扣款」
 
 **HPP 模式示例：**
 
@@ -555,6 +574,11 @@ document.getElementById('submit').addEventListener('click', () => {
 2. Webhook 订阅 `payment_consent.verified` 事件
 3. 调用 Get list of PaymentConsents 接口
 
+**参考文档链接：**
+- HPP MIT 示例：https://github.com/airwallex/airwallex-payment-demo/blob/master/integrations/cdn/hpp.html
+- Drop-in 注册用户结账：https://www.airwallex.com/docs/payments__drop-in-element__registered-user-checkout
+- 字段嵌入循环扣款：https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/recurring.md
+
 #### MIT 后续扣款
 
 ```
@@ -565,6 +589,24 @@ POST https://api-demo.airwallex.com/api/v1/pa/payment_intents/{id}/confirm
 {
   "request_id": "13d5a8b9-aa3e-45b7-8a22-6f3ceec8685b",
   "payment_consent_id": "cst_hkdmpspgwfxiesj6ymv"
+}
+```
+
+**Response 示例：**
+
+```json
+{
+  "id": "int_3LUABqW4z7kDsG4wazQS28Is1A",
+  "request_id": "13d5a8b9-aa3e-45b7-8a22-6f3ceec8685b",
+  "amount": 100,
+  "currency": "EUR",
+  "merchant_order_id": "bdf99a4e-078c-4a4b-b52b-61d1d938b7e6",
+  "customer_id": "cus_i2tRw20o4w3vwtZora6cvu9v877",
+  "payment_consent_id": "cst_hkdmpspgwfxiesj6ymv",
+  "status": "SUCCEEDED",
+  "captured_amount": 100,
+  "created_at": "2021-04-11T15:48:11+0000",
+  "updated_at": "2021-04-11T15:51:34+0000"
 }
 ```
 
@@ -887,9 +929,11 @@ Airwallex.confirmPaymentIntent({
 | 3DS 验证失败 | `4012000300000013` | `authentication_declined` |
 | 3DS 验证失败 | `4012000300000039` | `authentication_declined` |
 | 3DS 验证失败 | `4012000300000070` | `authentication_declined` |
-| 授权失败 | `4012000300000021`，金额 `88.88` | `issuer_declined` |
+| 授权失败 | `4012000300000021`，金额 `88.88` | `issuer_declined` (provider_original_response_code: "01") |
+| 授权失败 | `4012000300000088`，金额 `88.88` | `issuer_declined` (provider_original_response_code: "01") |
 
 > CVC/CVV 和有效期可填任意值。更多测试卡：https://www.airwallex.com/docs/payments__test-card-numbers
+> 测试样例：https://www.airwallex.com/docs/payments__integration-checklist
 
 ### 11.2 支付失败错误码与建议话术
 
