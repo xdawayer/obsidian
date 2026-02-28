@@ -1288,6 +1288,7 @@ AI 伦理与安全
 
 ## 相关笔记
 
+- [[Research/AI-经典论文库/00-论文索引.md|AI 经典论文库（15 篇里程碑论文详细解读）]]
 - [[Research/AI-Agents-从零开始学习指南.md|AI Agents 从零开始学习指南]]
 - [[docs/OpenClaw 完整技术架构与应用详解.md|OpenClaw 完整技术架构与应用详解]]
 - [[Research/OpenClaw-技术原理拆解-小白版.md|OpenClaw 技术原理拆解（小白版）]]
