@@ -49,7 +49,8 @@
   "systemPrompt": "",
   "allowedExportPaths": [
     "~/Desktop",
-    "~/Downloads"
+    "~/Downloads",
+    "/Users/wzb/gengrowth-wiki"
   ],
   "persistentExternalContextPaths": [],
   "environmentVariables": "HTTP_PROXY=http://127.0.0.1:1087\nHTTPS_PROXY=http://127.0.0.1:1087",
