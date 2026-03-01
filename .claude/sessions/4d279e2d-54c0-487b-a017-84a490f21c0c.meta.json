@@ -3,17 +3,17 @@
   "title": "Generate matchmaking product research report",
   "titleGenerationStatus": "success",
   "createdAt": 1772217870919,
-  "updatedAt": 1772359839835,
-  "lastResponseAt": 1772359839835,
+  "updatedAt": 1772362323355,
+  "lastResponseAt": 1772362323355,
   "sessionId": "4d279e2d-54c0-487b-a017-84a490f21c0c",
   "sdkSessionId": "4d279e2d-54c0-487b-a017-84a490f21c0c",
   "usage": {
     "model": "claude-opus-4-6",
-    "inputTokens": 9,
-    "cacheCreationInputTokens": 114656,
-    "cacheReadInputTokens": 519508,
+    "inputTokens": 35,
+    "cacheCreationInputTokens": 327386,
+    "cacheReadInputTokens": 1429585,
     "contextWindow": 200000,
-    "contextTokens": 634173,
+    "contextTokens": 1757006,
     "percentage": 100
   },
   "toolDiffData": {
