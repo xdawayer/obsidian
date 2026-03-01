@@ -730,3 +730,7 @@ OpenClaw 原生支持 **MCP 服务器**（**JSON-RPC 2.0** over stdio/HTTP）：
 
 - [[Research/OpenClaw-技术原理拆解-小白版.md|OpenClaw 技术原理拆解（小白版）]]
 - [[Research/AI-Agents-从零开始学习指南.md|AI Agents 从零开始学习指南]]
+- [[docs/OpenClaw-视频攻略-赋范课堂28集.md|OpenClaw 视频攻略（赋范课堂28集）]]
+- [[docs/OpenClaw-开发笔记-MiniOpenClaw与HR实战.md|OpenClaw 开发笔记 — Mini OpenClaw 与 HR 实战]]
+- [[docs/OpenClaw-HR-Agent-PRD.md|HR 数字员工 PRD]]
+- [[docs/OpenClaw-HR-Agent-项目工程.md|HR 数字员工项目工程设计]]
